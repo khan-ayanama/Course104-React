@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "esbuild": "^0.19.2"
+  },
+  "name": "using-bundler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild ./index.js --bundle --minify --outfile=Bundle.js --loader:.js=jsx --format=cjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

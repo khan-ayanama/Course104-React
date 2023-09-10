@@ -1,0 +1,1 @@
+var u=(o,n)=>()=>(n||o((n={exports:{}}).exports,n),n.exports);var l=u((r,e)=>{e.exports={add:function(o,n){return o+n},div:function(o,n){return o/n}}});var m=l();function a(){console.log("Hello World")}a();num1=55;num2=56;console.log(m.add(num1,num2));num3=60;num4=12;console.log(m.div(num3,num4));name="Ayan";lname="Khan";console.log(name);console.log(lname);
