@@ -34,13 +34,13 @@ NPM by itself doesn’t run any packages. If you want to run a package using npm
 
 npx is also a CLI tool whose purpose is to make it easy to install and manage dependencies hosted in the npm registry.
 
-## To remove Console.log()
+## To remove console.log()
 
 In order to minify and compress the code we also need to remove console.log() parcel doesn't do it so we need to install extra plugin of babel in order to do that
 
 1. You need to install babel-plugin-transform-remove-console in Developer mode
 
-2. In ClI run command
+2. In CLI run command
 
     ```git
         npm install babel-plugin-transform-remove-console --save-dev

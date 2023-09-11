@@ -1,9 +1,9 @@
 {
-  "name": "restaurant-app",
+  "name": "lazzat",
   "version": "1.0.0",
-  "description": "",
+  "description": "Food Delivery Website",
+  "main": "index.js",
   "scripts": {
-    "start":"npx parcel index.html",
     "test": "jest"
   },
   "author": "Ayan Khan",
