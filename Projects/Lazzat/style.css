@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: sans-serif;
+}
+
+/* Navbar styling */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px 2px rgb(139, 138, 138);
+}
+
+.nav-logo img {
+    height: 50px;
+}
+
+.nav-items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.search input {
+    width: 30rem;
+    font-size: 2rem;
+    padding: 0.1em 0.5em;
+}
+
+.search input:focus {
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin: 0 1.5em;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    border-bottom: 2px solid transparent;
+    transition: 0.2s ease-in-out;
+}
+
+.nav-links li a:hover {
+    border-bottom: 2px solid rgb(5, 5, 180);
+    transition: 0.2s ease-in-out;
+}

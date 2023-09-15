@@ -67,7 +67,6 @@ React is a JavaScript library for building User Interfaces and ReactDOM is the J
     const root = document.querySelector("#root");
 
     root.appendChild(heading)
-
 </script>
 ```
 
