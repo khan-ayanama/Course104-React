@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "build": "babel ./index.js -d dist"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.22.15",
+    "@babel/core": "^7.22.19",
+    "@babel/preset-env": "^7.22.15",
+    "babel-plugin-transform-remove-console": "^6.9.4"
+  }
+}
