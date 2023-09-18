@@ -130,3 +130,13 @@ Note: You've to return the functional component in div or <React.Fragment>Child<
 In JSX we generally use camelcase attribute and inline styles in double curly braces {{}} etc for more visit below site  
 
 [HTML vs JSX on Freecodecamp.org](https://www.freecodecamp.org/news/html-vs-jsx-whats-the-difference/)
+
+## Rendering Components
+
+React for building user interfaces, these three syntax variations are used to render components:
+
+`{TitleComponent}`: This syntax is used to render the TitleComponent as a self-closing tag without any children. It's typically used when the component doesn't have any content or children elements to render.
+
+`{<TitleComponent/>}`: This syntax is also used to render the TitleComponent as a self-closing tag, and it's functionally equivalent to the first syntax. It's a matter of personal preference which one you use.
+
+`{<TitleComponent></TitleComponent>}:` This syntax is used to render the TitleComponent with an opening and closing tag, allowing you to include children elements or content inside the component. This is used when you want to pass content or other JSX elements as children to the TitleComponent.
