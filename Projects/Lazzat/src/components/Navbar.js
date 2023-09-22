@@ -6,7 +6,7 @@ const searchInput = () => {
 };
 
 const Navbar = () => {
-  const [searchInput, setSearchInput] = useState("Search");
+  const [searchInput, setSearchInput] = useState("");
 
   return (
     <div className="navbar">
@@ -17,6 +17,7 @@ const Navbar = () => {
         <div className="search">
           <input
             type="text"
+            placeholder="Search"
             value={searchInput}
             onChange={(e) => {
               setSearchInput(e.target.value);
