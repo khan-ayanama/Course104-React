@@ -45,8 +45,8 @@ When data in a React application changes, the components that depend on that dat
 
 React is a JavaScript library for building User Interfaces and ReactDOM is the JavaScript library that allows React to interact with the DOM.
 
-* React: responsible for creating React elements (kinda like document.createElement())
-* ReactDOM: responsible for rendering React elements to the DOM (kinda like rootElement.append())
+* `React:` responsible for creating React elements (kinda like document.createElement())
+* `ReactDOM:` responsible for rendering React elements to the DOM (kinda like rootElement.append())
 
 ## 5. Simple HTML Code
 
