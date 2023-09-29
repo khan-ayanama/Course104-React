@@ -60,3 +60,42 @@ body {
     border-bottom: 2px solid rgb(5, 5, 180);
     transition: 0.2s ease-in-out;
 }
+
+/* ************************************************************************************************************** */
+
+.restaurant-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.5em;
+}
+
+.restaurant-card img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.restaurant-card {
+    width: 300px;
+    margin: 0.5em;
+    box-shadow: 0px 0px 2px 2px rgb(206, 205, 205);
+    border-radius: 10px;
+}
+
+.restaurant-card h2 {
+    font-weight: 500;
+    font-size: 2rem;
+    border-bottom: 2px solid black;
+    margin-bottom: 0.5em;
+    margin-left: 10px;
+}
+
+.restaurant-card p {
+    font-size: 1.5rem;
+    border-bottom: 2px solid rgb(187, 185, 185);
+    padding: 0.1em;
+    margin-left: 10px;
+
+}

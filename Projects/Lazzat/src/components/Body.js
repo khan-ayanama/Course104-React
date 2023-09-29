@@ -3,14 +3,12 @@ import RestaurantCard from "./RestaurantCard";
 
 const Body = () => {
   const restaurants = useRestaurant();
-  console.log("RESTAURATNT", restaurants);
-
   return (
-    <>
+    <div className="restaurant-cards">
       {restaurants?.map((restaurant) => (
         <RestaurantCard {...restaurant} key={restaurant?.info?.id} />
       ))}
-    </>
+    </div>
   );
 };
 
