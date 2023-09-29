@@ -125,6 +125,10 @@ Functional component with JSX
 
 Note: You've to return the functional component in div or <React.Fragment>Child</React.Fragment>
 
+## <React.Fragment>
+
+Using <React.Fragment> or the shorthand <>...</> helps keep your DOM structure clean and avoids unnecessary nesting when you don't want to introduce additional elements just for the sake of wrapping.
+
 ## HTML vs JSX
 
 In JSX we generally use camelcase attribute and inline styles in double curly braces {{}} etc for more visit below site  
@@ -140,3 +144,9 @@ React for building user interfaces, these three syntax variations are used to re
 `{<TitleComponent/>}`: This syntax is also used to render the TitleComponent as a self-closing tag, and it's functionally equivalent to the first syntax. It's a matter of personal preference which one you use.
 
 `{<TitleComponent></TitleComponent>}:` This syntax is used to render the TitleComponent with an opening and closing tag, allowing you to include children elements or content inside the component. This is used when you want to pass content or other JSX elements as children to the TitleComponent.
+
+## Benefits of JSX
+
+`XSS` - Cross site scripting (XSS) is an attack in which an attacker injects malicious executable scripts into the code of a trusted application or website. Attackers often initiate an XSS attack by sending a malicious link to a user and enticing the user to click it.
+
+JSX takes care of XSS.
