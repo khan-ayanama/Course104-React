@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import logo from "../images/swiggy-logo.webp";
-
-const searchInput = () => {
-  return <h1>Hello</h1>;
-};
 
 const Navbar = () => {
   const [searchInput, setSearchInput] = useState("");
+
+  const handleSearch = () => {
+    console.log("search");
+  };
 
   return (
     <div className="navbar">
@@ -23,6 +23,9 @@ const Navbar = () => {
               setSearchInput(e.target.value);
             }}
           />
+          <button type="submit" onClick={() => handleSearch()}>
+            Submit
+          </button>
         </div>
         <div className="nav-links">
           <li>
