@@ -1,5 +1,4 @@
 import logo from '../images/swiggy-logo.webp'
-import SearchBar from './SearchBar';
 
 
 const Navbar = () => {
@@ -9,7 +8,6 @@ const Navbar = () => {
                 <div className='logo'>
                     <img src={logo} alt="logo"/>
                 </div>
-                <SearchBar/>
                 <div className='nav-links'>
                     <ul>
                         <li>Offers</li>
