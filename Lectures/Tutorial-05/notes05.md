@@ -48,8 +48,130 @@ CORS stands for Cross-Origin Resource Sharing. It's a security feature implement
 
 ## Shimmer UI
 
-## Conditional Rendering
+Shimmer UI is commonly used in web and mobile applications, especially in scenarios where network latency or data fetching times can be significant. It is widely employed in applications with social feeds, news articles, product listings, and other content-heavy interfaces to enhance the user experience during data loading.
+
+## Conditional Rendering in React
+
+Conditional rendering in React allows you to display different components or content based on certain conditions. Here are some common ways to perform conditional rendering in React:
+
+
+```jsx
+    // Using `if` Statements:
+    function MyComponent({ isLoggedIn }) {
+    if (isLoggedIn) {
+        return <UserDashboard />;
+    } else {
+        return <LoginScreen />;
+    }
+    }
+
+    // Using the Ternary Operator:
+    function MyComponent({ isLoggedIn }) {
+    return isLoggedIn ? <UserDashboard /> : <LoginScreen />;
+    }
+
+    // Using Logical && Operator:
+    function MyComponent({ isLoggedIn }) {
+    return isLoggedIn && <UserDashboard />;
+    }
+
+    // Using map to Render Lists Conditionally:
+    function MyListComponent({ items }) {
+    return (
+        <ul>
+        {items.map(item => (
+            item.isVisible && <li key={item.id}>{item.name}</li>
+        ))}
+        </ul>
+    );
+    }
+```
+
+## One way data binding
+
+ne-way data binding is a data flow pattern commonly used in web development frameworks like React and Angular. In one-way data binding, data is transferred in a single direction, from the data source (such as a component's state or a variable) to the UI (User Interface). Changes in the data source automatically reflect in the UI, but not vice versa. This means that the UI is always kept in sync with the underlying data.
+
+### In the context of React:
+
+`State and Props:` In React, data flows in one direction, from a component's state or props to its child components. When the state or props of a component change, React re-renders the component and its children with the updated data. However, changes made in the child components do not directly affect the parent's state or props unless passed through callback functions.
+
+`Example in React:`
+
+```jsx
+    class MyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        message: "Hello, World!"
+        };
+    }
+
+    render() {
+        return <div>{this.state.message}</div>;
+    }
+    }
+```
+
+In this example, the message property of the component's state is bound to the UI. When setState is called to update message, the UI will automatically reflect the updated value.
+
+One-way data binding provides a clear and predictable data flow, making it easier to understand how data changes affect the UI. However, it also means that handling user input requires additional work, often involving event handling and callback functions to update the data source (state or props) based on user interactions.
+
 
 ## Javascript Expression & Javascript Statement
 
-In React you can run only javascript Expression
+In React you can run only write javascript Expression
+
+### Key Differences:
+
+1. Return Value:
+
+    * `Expression:` Produces a value and can be used where a value is expected (e.g., assignments, function arguments).
+    * `Statement:` Does not produce a value and is used for performing actions or controlling the flow of the program.
+
+2. Usage:
+
+    * `Expression:` Can be used within statements or other expressions.
+    * `Statement:` Forms the basic building blocks of a program and defines its structure.
+
+Understanding the distinction between expressions and statements is crucial for writing effective JavaScript code. Expressions are used to compute values, while statements are used to perform actions and control the program's flow.
+
+
+## What is the importance of config.js file
+
+All the hard coded data should be put in config or constant files
+
+## useState() hook
+
+useState hook is used to add state management to functional components. Prior to React 16.8, state could only be managed in class components. The introduction of hooks, including useState, provides a way for functional components to manage local state, making them more powerful and flexible. Here's why the useState hook is essential:
+
+1. `Functional Components with State:`
+Functional components are simpler and more concise than class components.
+The useState hook allows functional components to have their own state, making them capable of managing local data without the need for a class.
+2. `Simplified State Management:`
+The useState hook simplifies the process of initializing and updating state variables. It's a cleaner and more straightforward way to handle component-level state.
+You can use array destructuring to easily access the current state value and the function to update it.
+3. `Avoiding Class Components:`
+Hooks like useState reduce the need for class components. With hooks, functional components can now handle complex state logic, side effects, and context usage without converting them into class components.
+4. `Predictable Behavior:`
+Hooks ensure that state variables persist between renders. This means that when the component re-renders, the state remains consistent and doesn't reset to its initial value.
+5. `Consistent API:`
+The useState hook provides a consistent way to manage state across functional components. Once you understand how to use useState, you can apply similar patterns to other hooks like useEffect and useContext.
+
+`Example Usage of useState:`
+```jsx
+    import React, { useState } from 'react';
+
+    function Counter() {
+    const [count, setCount] = useState(0);
+
+    return (
+        <div>
+        <p>Count: {count}</p>
+        <button onClick={() => setCount(count + 1)}>Increment</button>
+        </div>
+    );
+}
+```
+In this example, useState is used to create a state variable count and a corresponding function setCount to update its value. Whenever the button is clicked, the count state is incremented, and the component re-renders with the updated value.
+
+Overall, the useState hook simplifies state management in functional components, making React applications more efficient and maintainable.
