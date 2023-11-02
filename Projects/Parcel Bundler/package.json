@@ -1,16 +1,17 @@
 {
   "name": "parcel-bundler",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
-  "source":"index.html",
   "scripts": {
-    "start": "parcel",
-    "build":"parcel build",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "build": "npx parcel build index.html"
+  }
+  
+  ,
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.10.1"
+    "parcel": "^2.10.1",
+    "terser": "^5.24.0"
   }
 }

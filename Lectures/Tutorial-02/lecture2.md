@@ -14,42 +14,6 @@ Underscore.js is a lightweight and superficial JavaScript library, that is not a
 
 Lodash is a popular JavaScript utility library that provides a collection of functions for simplifying and enhancing JavaScript code. It's designed to work with arrays, objects, strings, and functions, offering tools for common programming tasks. Lodash is known for its performance optimizations, making it one of the fastest utility libraries available. It's widely used by developers to streamline and improve their JavaScript code.
 
-### 2. Lodash vs underscore.js
-
-Lodash and Underscore.js are two JavaScript utility libraries that serve similar purposes—they both provide a collection of functions to simplify common programming tasks. However, there are some key differences between the two:
-
-* Performance:
-
-  * Lodash: Lodash is known for its performance optimizations. It's designed to be faster than Underscore.js, particularly for common operations on arrays and objects.
-  * Underscore.js: While Underscore.js is still reasonably performant, it may not be as fast as Lodash for certain operations, especially when dealing with large datasets.
-
-* Modularity:
-
-  * Lodash: Lodash is highly modular, allowing you to import only the specific functions you need. This modularity can help reduce the bundle size in web applications, making it more efficient in terms of file size.
-  * Underscore.js: Underscore.js is less modular, meaning you typically include the entire library in your project, even if you only need a subset of its functions. This can result in a larger bundle size compared to Lodash.
-
-* Additional Features:
-
-  * Lodash: Lodash offers a more extensive feature set than Underscore.js. It includes functions that Underscore.js lacks, such as deep object cloning (_.cloneDeep), string manipulation, and more advanced array and object manipulation functions.
-  * Underscore.js: Underscore.js provides a solid set of basic utility functions but may not have the same breadth of features as Lodash.
-
-* Community and Updates:
-
-  * Lodash: Lodash has a large and active community of developers and is frequently updated. It benefits from ongoing improvements and bug fixes.
-  * Underscore.js: Underscore.js, while still maintained, may not see updates as frequently as Lodash. Its development pace has slowed down over time.
-
-* Chaining:
-
-  * Lodash: Lodash introduced a chaining syntax that allows you to chain multiple operations together in a fluent and readable manner.
-  * Underscore.js: Underscore.js also supports method chaining, but Lodash's chaining syntax is considered more flexible and robust.
-
-* Community Adoption:
-
-  * Lodash: Lodash gained more popularity and widespread adoption among JavaScript developers, making it a common choice for utility functions in JavaScript projects.
-  * Underscore.js: While still used by some developers, Underscore.js has seen a decline in adoption in favor of Lodash and other modern utility libraries.
-
-In summary, both Lodash and Underscore.js offer utility functions to simplify JavaScript development, but Lodash is often preferred for its performance, modularity, additional features, and larger community. However, the choice between them may also depend on your specific project requirements and personal preferences.
-
 ## What is Bundler?
 
 A bundler is a development tool that combines many JavaScript code files into a single one and also minify, that is production-ready loadable in the browser.  
