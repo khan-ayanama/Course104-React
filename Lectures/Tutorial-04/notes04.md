@@ -353,3 +353,69 @@ Everytime you want your variable in synch with UI you should use state variable
         );
     };
 ```
+
+## FAQ
+
+### Is JSX mandatory for React?
+
+While JSX is not strictly mandatory, it significantly enhances the development experience when working with React. Most React developers choose to use JSX for its benefits in terms of readability, ease of use, and integration with React components.
+
+### {TitleComponent} vs {<TitleComponent/>} vs {<TitleComponent></TitleComponent>} in JSX
+
+* Use {TitleComponent} when you want to pass the component itself as a prop.
+* Use {<TitleComponent/>} when you want to render the component without passing any props.
+* Use {<TitleComponent></TitleComponent>} when you want to render the component and include children components or other content inside it.
+
+### What is Virtual DOM?
+
+Virtual DOM (VDOM) is a programming concept used in React and other modern JavaScript frameworks to improve the performance and efficiency of updating the user interface. It is not a feature of the browser's DOM; rather, it is a lightweight copy of the actual DOM kept in memory by React.
+
+Here's how the Virtual DOM works in React:
+
+`Initial Render:`
+
+* When a React component is first rendered or when the state or props of a component change, React creates a virtual representation of the DOM tree.
+* This virtual representation is a lightweight JavaScript object that mirrors the structure of the actual DOM.
+
+`Reconciliation:`
+
+* When there are updates (due to state or prop changes), React creates a new virtual DOM tree.
+* It then compares this new virtual DOM tree with the previous one using a process called "reconciliation."
+* React identifies the differences (or "diffs") between the new and old virtual DOM trees.
+
+`Efficient Updates:`
+
+* React calculates the most efficient way to update the actual DOM based on the differences found during reconciliation.
+* Instead of updating the entire real DOM, React updates only the specific parts of the DOM that have changed.
+* This targeted update approach significantly improves the rendering performance, especially in complex applications where many components can be re-rendered due to state or prop changes.
+
+`Batching Updates:`
+
+* React batches multiple updates into a single update operation to further optimize the rendering process.
+* This batching reduces the number of times the actual DOM is manipulated, minimizing the performance impact.
+
+By using the Virtual DOM, React optimizes the rendering process, making applications more responsive and efficient. Developers can work with React components as if they are interacting with the real DOM, while React efficiently handles the underlying updates behind the scenes, resulting in a smoother user experience.
+
+### What is React Fiber?
+
+**React Fiber** is a complete rewrite of the React reconciliation algorithm, introduced to React in version 16. It is an ongoing project within the React ecosystem that aims to improve the performance and responsiveness of React applications, especially for complex and interactive user interfaces.
+
+The term **"Fiber"** refers to a set of new internal algorithms and data structures in React that enable:
+
+- **Asynchronous Rendering:** React Fiber enables asynchronous rendering, meaning that the rendering work can be paused, allowing the browser to respond to user interactions and other high-priority tasks. Once the browser is idle, React Fiber can resume rendering, improving the application's responsiveness.
+
+- **Incremental Rendering:** React Fiber allows React to split the rendering work into smaller chunks, allowing the application to show intermediate states during rendering. This incremental rendering approach can lead to a perceived performance improvement, as users see updates more frequently.
+
+- **Improved Scheduling:** React Fiber provides better control over scheduling rendering tasks, allowing React to prioritize and reorder updates based on their importance. This can lead to more predictable performance and a smoother user experience.
+
+- **Support for Error Boundaries:** React Fiber enhances error handling by allowing components to catch errors during rendering, providing a way to gracefully handle errors without causing the entire application to crash.
+
+- **Better Support for Concurrent Mode:** Concurrent Mode is an experimental set of features in React that allows applications to be more responsive and gracefully handle tasks like data fetching, rendering, and user interactions concurrently. React Fiber provides a foundation for Concurrent Mode to be built upon.
+
+React Fiber is a significant internal improvement in React, focusing on making React more flexible and efficient for future developments. While most React developers don't need to interact directly with Fiber, its benefits are felt indirectly through improved performance and responsiveness in React applications.
+
+### Can we use index as keys in React?
+
+Yes, you can use index as keys in React, but it is generally not recommended, especially when the list of items is dynamic and can change over time. Using index as keys can lead to issues with component state and rendering, particularly when items are added, removed, or reordered.
+
+React uses keys to identify elements in a list uniquely. When you use index as keys and the order of the list changes, React might re-render more components than necessary or fail to update the components correctly.
