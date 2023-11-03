@@ -30,7 +30,9 @@ Now we will learn how to use the react-router-dom inside of an application after
 * It will create an array of object for required path and their elements.
 
 ```js
-    appRouter = createBrowserRouter([
+    import {createBrowserRouter,RouterProvider} from 'react-router-dom'
+
+    const appRouter = createBrowserRouter([
         {
             path: "/",
             element: <AppLayOut/>
