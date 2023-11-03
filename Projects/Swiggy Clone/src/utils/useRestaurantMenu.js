@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useEffect } from "react";
 
-const useRestaurant = (API_URL) => {
+const useRestaurantMenu = (API_URL) => {
 
-    const [restaurants, setRestaurant] = useState([])
+    const [restaurantMenu, setRestaurantMenu] = useState([])
 
     useEffect(()=>{
         fetchData();
@@ -13,9 +13,9 @@ const useRestaurant = (API_URL) => {
         try {
             const response = await fetch(API_URL)
             const result = await response.json()
-
-            const restaurantData = result?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-            setRestaurant(restaurantData)
+            
+            const restaurantMenu = result?.data?.cards[0]?.card?.card?.info;
+            setRestaurantMenu(restaurantMenu)
         } catch (error) {
             console.log(error)
         }
@@ -23,7 +23,7 @@ const useRestaurant = (API_URL) => {
 
 
 
-    return restaurants;
+    return restaurantMenu;
 }
 
-export default useRestaurant;
+export default useRestaurantMenu;

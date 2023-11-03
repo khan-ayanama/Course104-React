@@ -1,4 +1,5 @@
 import logo from '../images/swiggy-logo.webp'
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -6,13 +7,19 @@ const Navbar = () => {
         <header>
              <div className="nav-bar container">
                 <div className='logo'>
-                    <img src={logo} alt="logo"/>
+                    <Link to='/'><img src={logo} alt="logo"/></Link>
                 </div>
                 <div className='nav-links'>
                     <ul>
-                        <li>Offers</li>
-                        <li>About</li>
-                        <li>Login</li>
+                        <li>
+                            <Link to="/offers">Offers</Link>
+                        </li>
+                        <li>
+                            <Link to="/about">About</Link>
+                        </li>
+                        <li>
+                            <Link to="/contact">Contact</Link>
+                        </li>
                     </ul>
                 </div>
         </div>
