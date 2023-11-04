@@ -28,7 +28,7 @@ Modularity in React is essential for building scalable and maintainable applicat
 
 ## Custom Hook
 
-ustom hooks are functions that allow you to extract and reuse stateful logic across multiple components. Custom hooks enable you to abstract complex logic into reusable pieces, improving code modularity and maintainability. Custom hooks should follow the naming convention of starting with "use" to make it clear that they are hooks.
+Custom hooks are functions that allow you to extract and reuse stateful logic across multiple components. Custom hooks enable you to abstract complex logic into reusable pieces, improving code modularity and maintainability. Custom hooks should follow the naming convention of starting with "use" to make it clear that they are hooks.
 
 ### 1. Creating a Custom Hook
 
@@ -174,7 +174,7 @@ You can use this useIsOnline hook in your components to check the online status 
 
 ## Lazy loading
 
-* code splintting
+* code splitting
 * chunking
 * Dynamic bundling
 * on Demand laoding
@@ -229,7 +229,33 @@ const appRouter = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(<RouterProvider router={appRouter} />);
+```
 
+### Important
+
+* When we lazy load the component first time it's throw an error because it is not loaded instantly it takes time.
+* React will suspend the loading
+
+`Solution:` We use Suspense library to handle the error
+
+* We have to wrap the Component inside Suspense 
+
+```jsx
+  <Suspense>
+      <Component/>
+  </Suspense>
+
+  // You can see it in above code
+```
+
+* Suspense takes a component as fallback prop so when it's fail to find the component at initial error it will load the component
+
+* Here we will provide a Shimmer as a prop so it will show shimmer while it loads the actual chunk
+
+```jsx
+  <Suspense fallback={<Shimmer/>}>
+    <Component/>
+  </Suspense>
 ```
 
 ### Don't lazy load inside other component because it will be loaded after every cycle
