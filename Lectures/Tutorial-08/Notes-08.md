@@ -21,6 +21,22 @@ To make a nested route define a component inside the route called nested routing
 
 ## Class Based component
 
+* `Normal Class Based Component:`
+
+```jsx
+    import React from 'react'
+
+    class Profile extends React.Component{
+        render(){
+            return(
+                <h1>This is First Class Based Component</h1>
+            )
+        }
+    }
+
+    export default Profile;
+```
+
 You can't write classed based component without render method
 
 ## Accessing props in class based funtion
@@ -57,6 +73,7 @@ You can't write classed based component without render method
             <button
             onClick={() => {
                 this.num++;
+                // WE HAVE TO USE this.setState to change state yOU can't do like this.state
                 this.setState({
                 count: this.num,
                 });
@@ -74,7 +91,14 @@ You can't write classed based component without render method
 
 ## Life Cycle of Class based component
 
-### When parent and child component involved
+There are two phase of Life cycle of Class based component
+
+1. `Render Phase`: Constructor and Render is called
+2. `Commit Phase`: React updates DOM and ComponentDidMount called
+
+* Render phase is fast than commit phase
+
+### When parent and child components involved
 
 1. Parent Constructor
 2. Parent Render
@@ -252,3 +276,8 @@ he componentWillUnmount method is a lifecycle method in React's class components
         }
     })
 ```
+
+
+## HOMEWORK
+
+### We can async componentDidMount but not useEffect
