@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React, { Suspense, lazy } from 'react'
 import ReactDom from 'react-dom/client'
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
@@ -8,13 +8,18 @@ import Contact from './components/Contact'
 import Error from './components/Error'
 import Body from './components/Body'
 import Footer from './Footer'
-import Offers from './components/Offers'
+// import Offers from './components/Offers'
 import RestaurantMenu from './components/RestaurantMenu'
+import isOnline from './utils/useIsOnline'
+import Offline from './components/Offline'
+
+const Offers = lazy(()=>import('./components/Offers'))
 
 const AppLayout = () => {
     return(
         <React.Fragment>
             <Navbar/>
+            {!isOnline()?<Offline/>:null}
             <Outlet/>
             <Footer/>
         </React.Fragment>
@@ -41,7 +46,11 @@ const appRouter = createBrowserRouter([
             },
             {
                 path:'/offers',
-                element:<Offers/>
+                element:(
+                    <Suspense>
+                        <Offers/>
+                    </Suspense>
+                )
             },
             {
                 path:'/restaurants/:id',

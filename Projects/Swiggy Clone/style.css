@@ -165,3 +165,10 @@ a{
     border-bottom: 2px solid gray;
     margin-bottom: 0.5em;
 }
+
+.offline{
+    background-color: rgb(2, 2, 48);
+    width: 100vw;
+    color: white;
+    text-align: center;
+}
