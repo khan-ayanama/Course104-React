@@ -1,5 +1,7 @@
 # Redux
 
+## Redux vs Redux toolkit
+
 We use Redux to manage data layer in large applications.  
 Redux is object at the end of the day.
 
@@ -143,3 +145,9 @@ const RestaurantMenu = () => {
 
 export default RestaurantMenu;
 ```
+
+## Thunks in Redux
+
+## Middleware in Redux
+
+## Redux devtool
