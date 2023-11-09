@@ -10,6 +10,8 @@ If we're adding new code it shouldn't break existing code.
 
 ## Test Driven Development
 
+We write test case before writing code.
+
 ## Different Type of Testing
 
 ### Manual Testing
@@ -59,7 +61,7 @@ It uses JEST behind it which is used for testing javascript
 
 ### 3. Created First Test Case
 
-* Insdie __test__ folder we will create a file and write a test code for our component
+* Inside __test__ folder we will create a file and write a test code for our component
 
 ```js
     // sum.test.js
@@ -92,4 +94,4 @@ It uses JEST behind it which is used for testing javascript
     }
 ```
 
-* jsdom environment is running the testcode, not browser.
+* jsDOM environment is running the testcode, not browser.

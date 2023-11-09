@@ -76,29 +76,29 @@ Parcel's simplicity and ease of use make it an attractive choice for developers 
 
 ## What are Tranformers?
 
-Transformers enable you to write larger, reusable, blocks of JavaScript code that can be referenced anywhere in the app. 
+Transformers enable you to write larger, reusable, blocks of JavaScript code that can be referenced anywhere in the app.
 
 For example: Babel
 
 A transformer is a type of plugin or module that is responsible for processing and transforming source code or other assets during the build process. Transformers are commonly used to perform various tasks on files before they are bundled or served to a web application. These tasks can include:
 
-* Transpilation: Converting source code written in one programming language or version to another. For example, transforming modern JavaScript (ES6+) into an older version of JavaScript that is compatible with a broader range of browsers using a transpiler like Babel.
+* `Transpilation:` Converting source code written in one programming language or version to another. For example, transforming modern JavaScript (ES6+) into an older version of JavaScript that is compatible with a broader range of browsers using a transpiler like Babel.
 
-* Minification: Reducing the size of code or assets by removing whitespace, comments, and unnecessary characters. Minification helps improve the loading speed of web applications by reducing the size of files.
+* `Minification:` Reducing the size of code or assets by removing whitespace, comments, and unnecessary characters. Minification helps improve the loading speed of web applications by reducing the size of files.
 
-* Linting: Analyzing code for potential errors, code style violations, and best practice adherence. Linters like ESLint or TSLint can identify and report issues in code, helping developers write cleaner and more maintainable code.
+* `Linting:` Analyzing code for potential errors, code style violations, and best practice adherence. Linters like ESLint or TSLint can identify and report issues in code, helping developers write cleaner and more maintainable code.
 
-* File Type Conversion: Converting assets from one file type to another. For example, converting SASS or LESS files into CSS, or converting image files from one format to another.
+* `File Type Conversion:` Converting assets from one file type to another. For example, converting SASS or LESS files into CSS, or converting image files from one format to another.
 
-* Template Compilation: Processing template files, such as HTML templates or template literals in JavaScript, to generate dynamic content or transform them into static code.
+* `Template Compilation:` Processing template files, such as HTML templates or template literals in JavaScript, to generate dynamic content or transform them into static code.
 
-* Static Analysis: Analyzing code to perform optimizations, identify dependencies, or extract metadata. Static analysis can help with tasks like tree shaking, which removes unused code from bundles.
+* `Static Analysis:` Analyzing code to perform optimizations, identify dependencies, or extract metadata. Static analysis can help with tasks like tree shaking, which removes unused code from bundles.
 
-* CSS Preprocessing: Transforming CSS with pre-processors like SASS or LESS into standard CSS that browsers can interpret.
+* `CSS Preprocessing:` Transforming CSS with pre-processors like SASS or LESS into standard CSS that browsers can interpret.
 
-* Code Generation: Generating code dynamically based on certain conditions or input. Code generators can create code for specific tasks or configurations.
+* `Code Generation:` Generating code dynamically based on certain conditions or input. Code generators can create code for specific tasks or configurations.
 
-* Internationalization (i18n): Transforming code or assets to support different languages and locales in internationalized applications.
+* `Internationalization (i18n):` Transforming code or assets to support different languages and locales in internationalized applications.
 
 Transformers are an essential part of modern build tools and bundlers like Webpack, Rollup, and Vite. They enable developers to automate various tasks that are crucial for optimizing, preparing, and serving web applications efficiently. Transformers are often used through plugins or configuration settings in these build tools to define how source code and assets should be transformed during the build process.
 
@@ -108,11 +108,11 @@ Tree shaking is a technique used in modern JavaScript bundlers like Webpack and 
 
 ### Here's how tree shaking works
 
-* Static Analysis: During the bundling process, the JavaScript bundler performs static code analysis on your entire codebase to determine which parts of your code are actually used and which are not. It does this by inspecting the import and export statements in your code.
+* `Static Analysis:` During the bundling process, the JavaScript bundler performs static code analysis on your entire codebase to determine which parts of your code are actually used and which are not. It does this by inspecting the import and export statements in your code.
 
-* Marking Unused Code: The bundler marks the code that is not imported or referenced anywhere in your application as "unused" or "dead code."
+* `Marking Unused Code:` The bundler marks the code that is not imported or referenced anywhere in your application as "unused" or "dead code."
 
-* Elimination: Once the unused code is identified, the bundler can safely remove it from the final bundle. This process is called "tree shaking" because it starts from the entry point of your application (the "root" of the code "tree") and "shakes" off the unused branches.
+* `Elimination:` Once the unused code is identified, the bundler can safely remove it from the final bundle. This process is called "tree shaking" because it starts from the entry point of your application (the "root" of the code "tree") and "shakes" off the unused branches.
 
 Tree shaking is particularly beneficial for optimizing the size of JavaScript bundles in applications that use modern JavaScript modules (ES6 modules) and rely on third-party libraries or frameworks. It ensures that only the code that is actually used by your application ends up in the bundle, reducing its size and improving load times.  
 
@@ -297,15 +297,14 @@ Parcel. js is an open-source bundler. It supports many popular languages like Ty
 2.Answer the question of command line
 
 ```node
-package name: (day2)
-version: (1.0.0)
-description: 'This is Day2'
-entry point: (index.js)
-test command: jest
-git repository:
-keywords:
-author: Ayan Khan
-
+    package name: (day2)
+    version: (1.0.0)
+    description: 'This is Day2'
+    entry point: (index.js)
+    test command: jest
+    git repository:
+    keywords:
+    author: Ayan Khan
 ```
 
 3.Install a bundler to ignite our app which is parcel as devDependency
