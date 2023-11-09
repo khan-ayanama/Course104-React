@@ -360,11 +360,11 @@ Everytime you want your variable in synch with UI you should use state variable
 
 While JSX is not strictly mandatory, it significantly enhances the development experience when working with React. Most React developers choose to use JSX for its benefits in terms of readability, ease of use, and integration with React components.
 
-### {TitleComponent} vs {<TitleComponent/>} vs {<TitleComponent></TitleComponent>} in JSX
+### {TitleComponent} vs {`<TitleComponent/>`} vs {`<TitleComponent></TitleComponent>`} in JSX
 
 * Use {TitleComponent} when you want to pass the component itself as a prop.
-* Use {<TitleComponent/>} when you want to render the component without passing any props.
-* Use {<TitleComponent></TitleComponent>} when you want to render the component and include children components or other content inside it.
+* Use {`<TitleComponent/>`} when you want to render the component without passing any props.
+* Use {`<TitleComponent></TitleComponent>`} when you want to render the component and include children components or other content inside it.
 
 ### What is Virtual DOM?
 
@@ -402,15 +402,15 @@ By using the Virtual DOM, React optimizes the rendering process, making applicat
 
 The term **"Fiber"** refers to a set of new internal algorithms and data structures in React that enable:
 
-- **Asynchronous Rendering:** React Fiber enables asynchronous rendering, meaning that the rendering work can be paused, allowing the browser to respond to user interactions and other high-priority tasks. Once the browser is idle, React Fiber can resume rendering, improving the application's responsiveness.
+* **Asynchronous Rendering:** React Fiber enables asynchronous rendering, meaning that the rendering work can be paused, allowing the browser to respond to user interactions and other high-priority tasks. Once the browser is idle, React Fiber can resume rendering, improving the application's responsiveness.
 
-- **Incremental Rendering:** React Fiber allows React to split the rendering work into smaller chunks, allowing the application to show intermediate states during rendering. This incremental rendering approach can lead to a perceived performance improvement, as users see updates more frequently.
+* **Incremental Rendering:** React Fiber allows React to split the rendering work into smaller chunks, allowing the application to show intermediate states during rendering. This incremental rendering approach can lead to a perceived performance improvement, as users see updates more frequently.
 
-- **Improved Scheduling:** React Fiber provides better control over scheduling rendering tasks, allowing React to prioritize and reorder updates based on their importance. This can lead to more predictable performance and a smoother user experience.
+* **Improved Scheduling:** React Fiber provides better control over scheduling rendering tasks, allowing React to prioritize and reorder updates based on their importance. This can lead to more predictable performance and a smoother user experience.
 
-- **Support for Error Boundaries:** React Fiber enhances error handling by allowing components to catch errors during rendering, providing a way to gracefully handle errors without causing the entire application to crash.
+* **Support for Error Boundaries:** React Fiber enhances error handling by allowing components to catch errors during rendering, providing a way to gracefully handle errors without causing the entire application to crash.
 
-- **Better Support for Concurrent Mode:** Concurrent Mode is an experimental set of features in React that allows applications to be more responsive and gracefully handle tasks like data fetching, rendering, and user interactions concurrently. React Fiber provides a foundation for Concurrent Mode to be built upon.
+* **Better Support for Concurrent Mode:** Concurrent Mode is an experimental set of features in React that allows applications to be more responsive and gracefully handle tasks like data fetching, rendering, and user interactions concurrently. React Fiber provides a foundation for Concurrent Mode to be built upon.
 
 React Fiber is a significant internal improvement in React, focusing on making React more flexible and efficient for future developments. While most React developers don't need to interact directly with Fiber, its benefits are felt indirectly through improved performance and responsiveness in React applications.
 

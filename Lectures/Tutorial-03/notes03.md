@@ -150,3 +150,35 @@ React for building user interfaces, these three syntax variations are used to re
 `XSS` - Cross site scripting (XSS) is an attack in which an attacker injects malicious executable scripts into the code of a trusted application or website. Attackers often initiate an XSS attack by sending a malicious link to a user and enticing the user to click it.
 
 JSX takes care of XSS.
+
+## Inline CSS in REACT
+
+In React, you can use inline styles directly within JSX by passing a JavaScript object with camelCased versions of the CSS property names. Here's an example of how you can apply inline styles in a React component:
+
+```jsx
+    import React from 'react';
+
+    const MyComponent = () => {
+    const divStyle = {
+        color: 'blue',
+        backgroundColor: 'lightgray',
+        padding: '10px',
+        borderRadius: '5px'
+    };
+
+    return (
+        <div style={divStyle}>
+        Hello, Boss! This text is styled using inline CSS in React JSX.
+        </div>
+    );
+    };
+    export default MyComponent;
+```
+
+In this example, the divStyle object contains CSS properties and their corresponding values. These styles are applied directly to the `<div>` element using the style attribute in JSX.
+
+The keys in the divStyle object are camelCased versions of the CSS property names (backgroundColor instead of background-color, borderRadius instead of border-radius, etc.).
+
+Remember that the values for the styles are strings, and you need to use camelCase for property names as opposed to the hyphenated style you might be used to in regular CSS.
+
+This approach allows you to dynamically compute styles based on component state or props, making it a powerful way to style your React components
