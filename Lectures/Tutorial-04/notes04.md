@@ -165,7 +165,7 @@ The algorithm React uses to diff one tree with another to determine which parts 
 
 ## Diff Algorithm
 
-The diffing algorithm in React allows for the efficient updates and rendering of these DOM elements. As changes occur within the application's state or properties, React uses its diff algorithm to compare the new Virtual DOM with the old one.
+The Diffing algorithm in React allows for the efficient updates and rendering of these DOM elements. As changes occur within the application's state or properties, React uses its diff algorithm to compare the new Virtual DOM with the old one.
 
 ## What is React Fibre
 

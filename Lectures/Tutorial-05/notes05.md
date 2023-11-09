@@ -54,8 +54,7 @@ Shimmer UI is commonly used in web and mobile applications, especially in scenar
 
 Conditional rendering in React allows you to display different components or content based on certain conditions. Here are some common ways to perform conditional rendering in React:
 
-
-```jsx
+```js
     // Using `if` Statements:
     function MyComponent({ isLoggedIn }) {
     if (isLoggedIn) {
@@ -89,15 +88,15 @@ Conditional rendering in React allows you to display different components or con
 
 ## One way data binding
 
-ne-way data binding is a data flow pattern commonly used in web development frameworks like React and Angular. In one-way data binding, data is transferred in a single direction, from the data source (such as a component's state or a variable) to the UI (User Interface). Changes in the data source automatically reflect in the UI, but not vice versa. This means that the UI is always kept in sync with the underlying data.
+One-way data binding is a data flow pattern commonly used in web development frameworks like React and Angular. In one-way data binding, data is transferred in a single direction, from the data source (such as a component's state or a variable) to the UI (User Interface). Changes in the data source automatically reflect in the UI, but not vice versa. This means that the UI is always kept in sync with the underlying data.
 
-### In the context of React:
+### In the context of React
 
 `State and Props:` In React, data flows in one direction, from a component's state or props to its child components. When the state or props of a component change, React re-renders the component and its children with the updated data. However, changes made in the child components do not directly affect the parent's state or props unless passed through callback functions.
 
 `Example in React:`
 
-```jsx
+```js
     class MyComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -116,12 +115,11 @@ In this example, the message property of the component's state is bound to the U
 
 One-way data binding provides a clear and predictable data flow, making it easier to understand how data changes affect the UI. However, it also means that handling user input requires additional work, often involving event handling and callback functions to update the data source (state or props) based on user interactions.
 
-
 ## Javascript Expression & Javascript Statement
 
 In React you can run only write javascript Expression
 
-### Key Differences:
+### Key Differences
 
 1. Return Value:
 
@@ -134,7 +132,6 @@ In React you can run only write javascript Expression
     * `Statement:` Forms the basic building blocks of a program and defines its structure.
 
 Understanding the distinction between expressions and statements is crucial for writing effective JavaScript code. Expressions are used to compute values, while statements are used to perform actions and control the program's flow.
-
 
 ## What is the importance of config.js file
 
@@ -158,7 +155,8 @@ Hooks ensure that state variables persist between renders. This means that when 
 The useState hook provides a consistent way to manage state across functional components. Once you understand how to use useState, you can apply similar patterns to other hooks like useEffect and useContext.
 
 `Example Usage of useState:`
-```jsx
+
+```js
     import React, { useState } from 'react';
 
     function Counter() {
@@ -172,6 +170,7 @@ The useState hook provides a consistent way to manage state across functional co
     );
 }
 ```
+
 In this example, useState is used to create a state variable count and a corresponding function setCount to update its value. Whenever the button is clicked, the count state is incremented, and the component re-renders with the updated value.
 
 Overall, the useState hook simplifies state management in functional components, making React applications more efficient and maintainable.
