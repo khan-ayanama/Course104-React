@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    font-size: 62.5%;
+    --red:#D01C28;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+}
+
+.container{
+    width: 90%;
+    margin: 0 auto;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    height: 72px;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+a{
+    all: unset;
+}
+
+nav ul{
+    display: flex;
+    list-style: none;
+    gap: 2em;
+    height: 100%;
+    align-items: center;
+    font-size: 2rem;
+}
+
+nav ul li{
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: 0.2s ease-in-out;
+}
+
+nav ul li:hover{
+    border-bottom: 2px solid var(--red);
+    transition: 0.2s ease-in-out;
+}
+
+button{
+    all: unset;
+    background-color: var(--red);
+    color: white;
+    padding: 0.2em 0.7em;
+
+}
+
+.hero-section{
+    width: 80%;
+    display: flex;
+    height: calc(100vh - 72px);
+    justify-content: center;
+}
+
+.hero-content{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-self: center;
+}
+
+.hero-content h1{
+    font-size: 8rem;
+    line-height: 8rem;
+}
+
+button{
+    margin: 0 0.9em;
+    cursor: pointer;
+}
+
+.btn-2{
+    background-color: transparent;
+    color: black;
+    outline: 1px solid gray;
+    transition: 0.2s ease-in-out;
+}
+
+button:hover{
+    background-color: rgb(116, 3, 3);
+    transition: 0.2s ease-in-out;
+}
+
+.btn-2:hover{
+    background-color: rgb(226, 224, 224);
+    transition: 0.2s ease-in-out;
+}
+
+.hero-content-icon{
+    display: flex;
+    gap: 1em;
+}
+.hero-content-icon img{
+    cursor: pointer;
+}
+
+.hero-image{
+    align-self: center;
+}
+
+.hero-image img{
+    align-self: center;
+}
