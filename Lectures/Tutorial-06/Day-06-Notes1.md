@@ -25,7 +25,7 @@ It is used in React app for the route inside of an app.
 
 Now we will learn how to use the react-router-dom inside of an application after installation.
 
-* createBrowserRouter --> This is the recommended router for all React Router web projects. It uses the DOM History API to update the URL and manage the history stack.
+* `createBrowserRouter` --> This is the recommended router for all React Router web projects. It uses the DOM History API to update the URL and manage the history stack.
 
 * It will create an array of object for required path and their elements.
 
@@ -192,7 +192,7 @@ const appRouter = createBrowserRouter([
 
 In Dyanamic segment we can use dyanamic routes for different pages.
 
-* useParams --> It is the hook which reads the parameter given to dyanmic url.
+* `useParams` --> It is the hook which reads the parameter given to dyanmic url.
 
 ```js
   // RestaurantMenu.js

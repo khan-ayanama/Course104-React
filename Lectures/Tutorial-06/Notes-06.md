@@ -1,4 +1,4 @@
-## Making API Call
+# Making API Call
 
 ## Fetch API
 
@@ -26,7 +26,7 @@
     });
 ```
 
-* The fetch function is used to make a GET request to https://api.example.com/data.
+* The fetch function is used to make a GET request to `https://api.example.com/data`.
 * The response is checked for success (status code 200).
 * If successful, the JSON data is parsed from the response using the .json() method.
 * The parsed data is then logged to the console.
@@ -56,7 +56,7 @@
 
 In this example:
 
-* The fetch function is used to make a POST request to https://api.example.com/post.
+* The fetch function is used to make a POST request to `https://api.example.com/post`.
 * The method is set to 'POST', and the headers specify that the payload is in JSON format.
 * The JSON payload (an object) is converted to a string using JSON.stringify() and sent as the body of the request.
 * The response is parsed as JSON and logged to the console.
@@ -72,7 +72,7 @@ Axios is a popular JavaScript library that simplifies the process of making HTTP
 ```bash
     npm install axios
     # or
-yarn add axios
+    yarn add axios
 ```
 
 `Making a GET Request:`
@@ -94,6 +94,7 @@ yarn add axios
 ```
 
 `Making a POST Request with JSON Payload:`
+
 ```javascript
     // Making a POST request with JSON payload
     axios.post('https://api.example.com/post', {
@@ -107,24 +108,25 @@ yarn add axios
         // Handle error
         console.error('Error:', error);
   });
-```    
+```
 
 `Using Async/Await with Axios:`
 You can also use async/await syntax for making API calls with Axios, especially inside functions marked as async:
 
 ```javascript
     async function fetchData() {
-    try {
-        const response = await axios.get('https://api.example.com/data');
-        console.log('Data:', response.data);
-    } catch (error) {
-        console.error('Error:', error);
+        try {
+            const response = await axios.get('https://api.example.com/data');
+            console.log('Data:', response.data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
-}
+
+    // Call the async function
+    fetchData();
 ```
 
-// Call the async function
-fetchData();
 Axios provides a concise and expressive way to make HTTP requests in JavaScript applications, and it offers additional features such as interceptors, request and response transformations, and cancellation tokens, making it a powerful tool for managing API calls. Remember to handle errors appropriately and customize the requests and responses based on your API's requirements.
 
 ## useEffect() hook
@@ -133,7 +135,7 @@ Axios provides a concise and expressive way to make HTTP requests in JavaScript 
 
 The useEffect hook in React is used to perform side effects in functional components. Side effects can include data fetching, subscriptions, or manually changing the DOM, among other things. It is similar to lifecycle methods in class components, specifically componentDidMount, componentDidUpdate, and componentWillUnmount.
 
-### Here's how you can use the useEffect hook:
+### Here's how you can use the useEffect hook
 
 `Basic Usage:`
 
@@ -161,12 +163,12 @@ The useEffect hook in React is used to perform side effects in functional compon
     );
 }
 ```
+
 In this example:
 
-* useEffect takes two arguments: a function containing the code to run for the effect, and an optional dependency array (second argument).
+* `useEffect takes two arguments:` a function containing the code to run for the effect, and an optional dependency array (second argument).
 * The effect sets the document title to include the current count value.
 * The effect runs after the initial render and after every re-render because it doesn't have a dependency array (or, equivalently, because the dependency array is empty).
-
 
 `With Dependency Array:`
 
@@ -195,6 +197,7 @@ useEffect can also return a cleanup function, which will be executed when the co
     };
 }, []);
 ```
+
 The cleanup function runs when the component is unmounted or when the effect is re-run (due to dependencies changing).
 If the effect doesn't depend on any values, the cleanup function will be executed only when the component is unmounted.
 
@@ -233,6 +236,7 @@ the effect sets up a subscription, and the cleanup function unsubscribes from it
 
     export default SubscriptionComponent;
 ```
+
 In this example:
 
 * The useEffect sets up an interval that updates the message state every 2 seconds, simulating new messages being received.
