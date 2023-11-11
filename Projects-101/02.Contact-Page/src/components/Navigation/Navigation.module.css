@@ -1,0 +1,30 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    height: 72px;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+a{
+    all: unset;
+}
+
+.nav ul{
+    display: flex;
+    list-style: none;
+    gap: 2em;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.nav ul li{
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: 0.2s ease-in-out;
+}
+
+.nav ul li:hover{
+    border-bottom: 2px solid rgb(0, 0, 26);
+    transition: 0.2s ease-in-out;
+}
