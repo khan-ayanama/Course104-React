@@ -1,0 +1,19 @@
+{
+  "name": "chapter-02",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "json-start":"json-server db.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^4.2.1"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.4"
+  }
+}
