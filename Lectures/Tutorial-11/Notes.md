@@ -8,39 +8,40 @@ In React, props (short for properties) are a way to pass data from a parent comp
 
 1. `Passing Props from Parent to Child:`
 
-In your parent component, you can pass data to a child component by specifying attributes in the JSX tag of the child component. For example:
+    In your parent component, you can pass data to a child component by specifying attributes in the JSX tag of the child component. For example:
 
-```jsx
-    // ParentComponent.js
-    import React from 'react';
-    import ChildComponent from './ChildComponent';
+    ```jsx
+        // ParentComponent.js
+        import React from 'react';
+        import ChildComponent from './ChildComponent';
 
-    const ParentComponent = () => {
-    const data = 'Hello from Parent!';
+        const ParentComponent = () => {
+        const data = 'Hello from Parent!';
 
-    return <ChildComponent data={data} />;
-};
+        return <ChildComponent data={data} />;
+    };
 
-export default ParentComponent;
-```
-In the above example, the data variable is passed as a prop to the ChildComponent.
+    export default ParentComponent;
+    ```
+
+    In the above example, the data variable is passed as a prop to the ChildComponent.
 
 2. `Accessing Props in the Child Component:`
 
-In the child component, you can access the passed props by defining a parameter in the functional component or by using this.props in a class component:
+    In the child component, you can access the passed props by defining a parameter in the functional component or by using this.props in a class component:
 
-```jsx
-    // ChildComponent.js
-    import React from 'react';
+    ```jsx
+        // ChildComponent.js
+        import React from 'react';
 
-    const ChildComponent = (props) => {
-    return <div>{props.data}</div>;
-    };
+        const ChildComponent = (props) => {
+        return <div>{props.data}</div>;
+        };
 
-export default ChildComponent;
-```
+    export default ChildComponent;
+    ```
 
-In this case, the data prop received from the parent component is displayed inside the ChildComponent.
+    In this case, the data prop received from the parent component is displayed inside the ChildComponent.
 
 3. `Props Drilling:`
 
@@ -129,7 +130,6 @@ export default App;
 
 In this example, App component renders the Accordion component with the items array as a prop. Each item has a title and content property.
 
-
 ## Build Collapsiblle Accoridian
 
 ## Lifting the StateUp
@@ -140,19 +140,19 @@ Here's a step-by-step guide on how to lift state up in React:
 
 1. `Identify the Shared State:`
 
-Determine which components need to share the same state. If multiple components need access to the same data or need to modify the same data, it's a good candidate for lifting the state up.
+    Determine which components need to share the same state. If multiple components need access to the same data or need to modify the same data, it's a good candidate for lifting the state up.
 
-2.`Move the State to a Common Ancestor:`
+2. `Move the State to a Common Ancestor:`
 
-Identify the common ancestor (parent) component of the components that need access to the state. Move the state and the functions to update that state to the parent component.
+    Identify the common ancestor (parent) component of the components that need access to the state. Move the state and the functions to update that state to the parent component.
 
 3. `Pass State and Callback Functions as Props:`
 
-Pass the state data and the functions to update the state down to the child components as props. This allows child components to read the state and update it indirectly through the functions passed as props.
+    Pass the state data and the functions to update the state down to the child components as props. This allows child components to read the state and update it indirectly through the functions passed as props.
 
 4. `Handle State Changes in the Parent Component:`
 
-In the parent component, define functions to handle state changes. Pass these functions as props to the child components. When a child component needs to update the shared state, it calls the function passed from the parent.
+    In the parent component, define functions to handle state changes. Pass these functions as props to the child components. When a child component needs to update the shared state, it calls the function passed from the parent.
 
 Here's an example to illustrate lifting state up in React:
 
@@ -227,57 +227,59 @@ Here's how you can use React Context:
 1. `Creating a Context:`
 First, you need to create a context using the React.createContext() method. This creates a context object with two components: Provider and Consumer. The Provider component is used to wrap the part of the component tree where you want to provide the context, and the Consumer component is used to access the context value within a component.
 
-```jsx
-    // MyContext.js
-    import React from 'react';
+    ```jsx
+        // MyContext.js
+        import React from 'react';
 
-    const MyContext = React.createContext();
+        const MyContext = React.createContext();
 
-export default MyContext;
-```
+        export default MyContext;
+    ```
 
 2. `Providing Context Value:`
-Wrap the part of your component tree where you want to provide the context with the Provider component. Pass the data you want to share as the value prop.
 
-```jsx
-    // App.js
-    import React from 'react';
-    import MyContext from './MyContext';
-    import ChildComponent from './ChildComponent';
+    Wrap the part of your component tree where you want to provide the context with the Provider component. Pass the data you want to share as the value prop.
 
-    const App = () => {
-    const contextValue = 'Hello from Context';
+    ```jsx
+        // App.js
+        import React from 'react';
+        import MyContext from './MyContext';
+        import ChildComponent from './ChildComponent';
 
-    return (
-        <MyContext.Provider value={contextValue}>
-        <ChildComponent />
-        </MyContext.Provider>
-    );
-    };
+        const App = () => {
+        const contextValue = 'Hello from Context';
 
-export default App;
-```
+        return (
+            <MyContext.Provider value={contextValue}>
+            <ChildComponent />
+            </MyContext.Provider>
+        );
+        };
+
+        export default App;
+    ```
 
 3. `Consuming Context Value:`
-In the components where you want to access the context, use the Consumer component or the useContext hook to access the context value.
 
-Using Consumer component:
+    In the components where you want to access the context, use the Consumer component or the useContext hook to access the context value.
 
-```jsx
-    // ChildComponent.js
-    import React from 'react';
-    import MyContext from './MyContext';
+    Using Consumer component:
 
-    const ChildComponent = () => {
-    return (
-        <MyContext.Consumer>
-        {(contextValue) => <div>{contextValue}</div>}
-        </MyContext.Consumer>
-    );
-    };
+    ```jsx
+        // ChildComponent.js
+        import React from 'react';
+        import MyContext from './MyContext';
 
-export default ChildComponent;
-```
+        const ChildComponent = () => {
+        return (
+            <MyContext.Consumer>
+            {(contextValue) => <div>{contextValue}</div>}
+            </MyContext.Consumer>
+        );
+        };
+
+        export default ChildComponent;
+    ```
 
 `Using useContext hook (functional components only):`
 
@@ -292,7 +294,7 @@ export default ChildComponent;
     return <div>{contextValue}</div>;
     };
 
-export default ChildComponent;
+    export default ChildComponent;
 ```
 
 With the useContext hook, accessing context values becomes even more straightforward, especially in functional components.
@@ -304,59 +306,62 @@ Using React Context, you can avoid prop drilling and make your components more m
 In class-based components, you can use React Context by using the contextType property or the static contextType property to access the context. Here's how you can use React Context in a class-based component:
 
 1. `Creating a Context:`
-First, create your context as shown previously:
+    First, create your context as shown previously:
 
-```jsx
-    // MyContext.js
-    import React from 'react';
+    ```jsx
+        // MyContext.js
+        import React from 'react';
 
-    const MyContext = React.createContext();
+        const MyContext = React.createContext();
 
-export default MyContext;
-```
+        export default MyContext;
+    ```
 
 2. `Providing Context Value:`
-Wrap the part of your component tree where you want to provide the context with the Provider component. Pass the data you want to share as the value prop.
 
-```jsx
-    // App.js
-    import React from 'react';
-    import MyContext from './MyContext';
-    import ChildComponent from './ChildComponent';
+    Wrap the part of your component tree where you want to provide the context with the Provider component. Pass the data you want to share as the value prop.
 
-    class App extends React.Component {
-    render() {
-        const contextValue = 'Hello from Context';
+    ```jsx
+        // App.js
+        import React from 'react';
+        import MyContext from './MyContext';
+        import ChildComponent from './ChildComponent';
 
-        return (
-        <MyContext.Provider value={contextValue}>
-            <ChildComponent />
-        </MyContext.Provider>
-        );
-    }
-    }
+        class App extends React.Component {
+        render() {
+            const contextValue = 'Hello from Context';
 
-export default App;
-```
+            return (
+            <MyContext.Provider value={contextValue}>
+                <ChildComponent />
+            </MyContext.Provider>
+            );
+        }
+        }
 
-3. Consuming Context Value in Class-Based Component:
-In a class-based component, you can access the context value using the this.context property. However, you need to specify the context type using the contextType property.
+    export default App;
+    ```
 
-```jsx
-    // ChildComponent.js
-    import React from 'react';
-    import MyContext from './MyContext';
+3. `Consuming Context Value in Class-Based Component:`
 
-    class ChildComponent extends React.Component {
-    static contextType = MyContext;
+    In a class-based component, you can access the context value using the this.context property. However, you need to specify the context type using the contextType property.
 
-    render() {
-        return <div>{this.context}</div>;
-    }
-    }
+    ```jsx
+        // ChildComponent.js
+        import React from 'react';
+        import MyContext from './MyContext';
 
-export default ChildComponent;
-```
+        class ChildComponent extends React.Component {
+        static contextType = MyContext;
+
+        render() {
+            return <div>{this.context}</div>;
+        }
+        }
+
+    export default ChildComponent;
+    ```
+
 In this example, we set the contextType to MyContext, allowing you to access the context value using this.context in the ChildComponent.
 
 This approach is specifically for class-based components. If you are working with functional components, you can use the useContext hook, which is a more modern and concise way to access context values, as demonstrated in the previous response.
