@@ -238,7 +238,7 @@ root.render(<RouterProvider router={appRouter} />);
 
 `Solution:` We use Suspense library to handle the error
 
-* We have to wrap the Component inside Suspense 
+* We have to wrap the Component inside Suspense
 
 ```jsx
   <Suspense>
