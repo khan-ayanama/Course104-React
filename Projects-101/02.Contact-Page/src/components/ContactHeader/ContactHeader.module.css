@@ -1,3 +1,7 @@
+.contact_section{
+    padding-top: 20px;
+}
+
 .contact_section h1{
     font-size: 3rem;
     font-weight: 800;
@@ -6,3 +10,4 @@
 .contact_section p{
     font-weight: 500;
 }
+
