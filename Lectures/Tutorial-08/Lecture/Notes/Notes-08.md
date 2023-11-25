@@ -279,4 +279,4 @@ he componentWillUnmount method is a lifecycle method in React's class components
 
 ## HOMEWORK
 
-### We can async componentDidMount but not useEffect
+### We can async componentDidMount but not async useEffect

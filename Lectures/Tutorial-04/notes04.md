@@ -38,6 +38,38 @@ You can also remove div instead of it write it with empty tag instead of React.F
     )
 ```
 
+## React.StrictMode
+
+In React, StrictMode is a tool designed for identifying common issues in the development mode of your React applications. When you wrap your application with StrictMode, it performs additional checks and warnings to help you write better and more maintainable code.
+
+Some of the checks performed by StrictMode include:
+
+`Identifying components with unsafe lifecycle methods:` It helps you catch deprecated and unsafe lifecycle methods, encouraging you to use the recommended alternatives.
+
+`Detecting unexpected side effects:` StrictMode can help you find components where the render phase has side effects, which can lead to bugs and performance issues.
+
+`Spotting legacy string ref API usage:` It warns about the usage of the legacy string ref API, encouraging the use of the newer function ref API.
+
+`Warning about legacy context API usage:` If you are using the legacy context API, StrictMode will provide a warning and suggest migrating to the new context API.
+
+By using StrictMode during development, you can catch potential problems early and ensure that your code follows best practices. It is important to note that these checks are only active in the development environment and are meant to assist developers during the development process.
+
+To use StrictMode, you can wrap your root component in the ReactDOM.render() method:
+
+```jsx
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+
+    ReactDOM.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+    );
+```
+
+This way, StrictMode will be applied to all components within the App component, helping you identify and address potential issues.
+
 ## Inline Style
 
 ```jsx
@@ -177,6 +209,83 @@ React Fiber is an internal engine change geared to make React faster and smarter
 In summary, using the index of an array as the key prop in React's map() function can cause issues when the list items can be added, removed, or reordered. To avoid these problems, you should always use a unique identifier as the key prop instead.
 
 ## React Folder Structure
+
+Establishing a well-organized folder structure is crucial for maintaining a scalable and maintainable React application. While there's no one-size-fits-all structure, here's a commonly used and recommended approach:
+
+```lua
+    /src
+    |-- /components
+    |   |-- /Header
+    |   |   |-- Header.js
+    |   |   |-- Header.css
+    |   |
+    |   |-- /Footer
+    |   |   |-- Footer.js
+    |   |   |-- Footer.css
+    |   |
+    |   |-- /SomeComponent
+    |       |-- SomeComponent.js
+    |       |-- SomeComponent.css
+    |
+    |-- /containers
+    |   |-- /Home
+    |   |   |-- Home.js
+    |   |   |-- Home.css
+    |   |
+    |   |-- /Dashboard
+    |       |-- Dashboard.js
+    |       |-- Dashboard.css
+    |
+    |-- /services
+    |   |-- api.js
+    |
+    |-- /utils
+    |   |-- helperFunctions.js
+    |
+    |-- /styles
+    |   |-- globalStyles.css
+    |
+    |-- /assets
+    |   |-- /images
+    |   |-- /fonts
+    |
+    |-- /redux
+    |   |-- /actions
+    |   |-- /reducers
+    |   |-- /store
+    |
+    |-- /routes
+    |   |-- AppRouter.js
+    |
+    |-- App.js
+    |-- index.js
+    |-- index.css
+    |-- config.js
+    |-- .env
+    |-- .gitignore
+    |-- package.json
+    |-- README.md
+```
+
+Here's a breakdown of the structure:
+
+`components:` Reusable presentational components.
+`containers:` Components that are connected to the Redux store or manage local state.
+`services:` API calls, third-party integrations, etc.
+`utils:` Helper functions or utilities.
+`styles:` Global styles.
+`assets:` Images, fonts, and other static assets.
+`redux:` Actions, reducers, and the Redux store.
+`routes:` Handles routing, often using React Router.
+`App.js:` The main component where your application is initialized.
+`index.js:` The entry point of your application.
+`index.css:` Global styles for the entire application.
+`config.js:` Configuration settings for your application.
+`.env:` Environment variables.
+`.gitignore:` Specifies intentionally untracked files to ignore in version control.
+`package.json:` Lists dependencies and other project metadata.
+`README.md:` Project documentation.
+Remember, the structure can vary based on the project's size and requirements. Adjust it according to your specific needs. It's also a good practice to keep related files (e.g., JS and CSS) in the same folder for easier maintenance.
 
 ## export Default
 
