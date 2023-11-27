@@ -21,15 +21,16 @@ Here's a brief example using redux-thunk:
 ```javascript
     // Action creator using thunk
     const fetchData = () => {
-    return (dispatch) => {
-        dispatch(requestData()); // You can dispatch a synchronous action here
+        return (dispatch,getState) => {
+            // 1. When you want to dispatch a synchronous action
+            dispatch(requestData());
 
-        // Async operation (e.g., fetching data)
-        fetch('https://api.example.com/data')
-        .then(response => response.json())
-        .then(data => dispatch(receiveData(data))) // Dispatch another action when data is received
-        .catch(error => dispatch(requestDataError(error))); // Dispatch an error action if needed
-    };
+            // 2. When you want to dispatch an asynchronous action
+            fetch('https://api.example.com/data')
+            .then(response => response.json())
+            .then(data => dispatch(receiveData(data))) // Dispatch another action when data is received
+            .catch(error => dispatch(requestDataError(error))); // Dispatch an error action if needed
+        };
     };
 
     // Example reducer
@@ -69,11 +70,11 @@ Instead of returning a plain action object, action creators can return functions
 
     // Asynchronous action creator using Redux Thunk
     const incrementAsync = () => {
-    return (dispatch) => {
-        setTimeout(() => {
-        dispatch(increment());
-        }, 1000);
-    };
+        return (dispatch) => {
+            setTimeout(() => {
+            dispatch(increment());
+            }, 1000);
+        };
     };
 ```
 
@@ -96,19 +97,83 @@ Inside your thunk functions, you can perform asynchronous operations, such as ma
 
 ```javascript
     const fetchData = () => {
-    return (dispatch) => {
-        dispatch(requestData());
+        return (dispatch) => {
+            dispatch(requestData());
 
-        // Async operation (e.g., fetching data)
-        fetch('https://api.example.com/data')
-        .then(response => response.json())
-        .then(data => dispatch(receiveData(data)))
-        .catch(error => dispatch(requestDataError(error)));
-    };
+            // Async operation (e.g., fetching data)
+            fetch('https://api.example.com/data')
+            .then(response => response.json())
+            .then(data => dispatch(receiveData(data)))
+            .catch(error => dispatch(requestDataError(error)));
+        };
     };
 ```
 
 By using Redux Thunk, you can handle asynchronous logic in a way that aligns with the principles of Redux, keeping your actions and reducers pure and predictable.
+
+## Complete Code of Using Redux Thunk Middleware
+
+```js
+    // Using Redux Thunk
+    import { createStore,applyMiddleware } from 'redux'
+    import thunk from 'redux-thunk'
+    import logger from 'redux-logger'
+    import axios from 'axios'
+
+    const history = []
+
+    const store = createStore(reducer,applyMiddleware(logger.default,thunk.default))
+
+    // Reducer Function
+    function reducer(state={amount:1},action){
+        switch(action.type){
+            case 'init-user':
+                return {amount: action.payload}
+            case 'increment':
+                return{amount: state.amount+1}
+            case 'decrement':
+                return{amount: state.amount-1}
+            case 'incrementByAmount':
+                return{amount: state.amount+action.payload}
+            case 'decrementByAmount':
+                return{amount: state.amount-action.payload}
+            default:
+                return state;
+        }
+    }
+
+    // ACTION CREATORS
+
+    // This Action creater will return the aysnchrnous  and it will dispatch an another function (initUser) which will return plain object
+    function getUser(id){
+        return async (dispatch,getState)=>{
+            const {data} = await axios.get(`http://localhost:3000/accounts/${id}`)
+            dispatch(initUser(data.amount))
+        }
+    }
+
+    function initUser(value){
+        return {type:'init-user',payload:value}
+    }
+
+    function increment(){
+        return {type:'increment'}
+    }
+    function decrement(){
+        return {type:'decrement'}
+    }
+    function incrementByAmount(value){
+        return {type:'incrementByAmount',payload:value}
+    }
+
+    function decrementByAmount(value){
+        return {type:'decrementByAmount',payload:value}
+    }
+
+    // Dispatching an action which will take as function in it's input which will again return a function unlike other's which returns the object
+    store.dispatch(getUser(1))
+
+```
 
 ## Multiple Reducers
 

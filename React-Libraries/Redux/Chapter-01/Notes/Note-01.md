@@ -36,6 +36,7 @@ When use dispatch an `Action` it triggers the `Reducer Function` which changes t
 
 
     // Subscribe a store (it will call whenever state of stores changes)
+    // getState(): It gives the global state of store
     store.subscribe(()=>{
         history.push(store.getState())
         console.log(history)
@@ -44,7 +45,7 @@ When use dispatch an `Action` it triggers the `Reducer Function` which changes t
 
     // Changing the state in every 2 second
     setInterval(()=>{
-        // Dispatchin an action
+        // Dispatching an action
         store.dispatch({type:'increment'})
     },2000)
 ```

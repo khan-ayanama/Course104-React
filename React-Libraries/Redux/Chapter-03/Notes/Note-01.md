@@ -34,7 +34,7 @@ Multiple reducers can be combined into a single root reducer using combineReduce
 
 ## 2. React-Redux Integration
 
-`Provider Component:`
+1. `Provider Component:`
 The Provider component is a wrapper that makes the Redux store available to the entire React component tree.
 It's typically placed at the root level of your application.
 
@@ -52,20 +52,22 @@ It's typically placed at the root level of your application.
 `Connect Function:`
 The connect function is used to connect your React components to the Redux store.
 It's a higher-order component that takes two functions as arguments: mapStateToProps and mapDispatchToProps.
-jsx
-Copy code
-import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => ({
-  someData: state.someData,
-});
+```jsx
+  import { connect } from 'react-redux';
 
-const mapDispatchToProps = (dispatch) => ({
-  someAction: () => dispatch(someAction()),
-});
+  const mapStateToProps = (state) => ({
+    someData: state.someData,
+  });
 
-const ConnectedComponent = connect(mapStateToProps, mapDispatchToProps)(YourComponent);
-3. Usage in Components:
+  const mapDispatchToProps = (dispatch) => ({
+    someAction: () => dispatch(someAction()),
+  });
+
+  const ConnectedComponent = connect(mapStateToProps, mapDispatchToProps)(YourComponent);
+```
+
+`Usage in Components:`
 Accessing State:
 Connected components can access the Redux state as props.
 jsx
@@ -78,19 +80,19 @@ jsx
 Copy code
 // Inside YourComponent
 this.props.someAction();
-4. Middleware:
+1. Middleware:
 Redux Thunk (or other middleware):
 Middleware enhances the store's abilities, and redux-thunk is a popular middleware for handling asynchronous actions.
 It allows you to dispatch functions as actions, enabling asynchronous operations.
-5. Selectors:
+1. Selectors:
 Reselect:
 Reselect is a library that provides a memoized selector function. Selectors are used for computing derived data from the Redux store.
-6. Immutable Data:
+1. Immutable Data:
 Immer or Immutable.js:
 To ensure state immutability, libraries like Immer or Immutable.js are often used, especially when dealing with complex state structures.
-7. Middleware Logging:
+1. Middleware Logging:
 Redux Logger:
 Middleware like redux-logger can be added for logging actions and state changes during development.
-8. DevTools Integration:
+1. DevTools Integration:
 Redux DevTools Extension:
 The Redux DevTools Extension is a browser extension that allows you to inspect and debug your Redux state changes.
