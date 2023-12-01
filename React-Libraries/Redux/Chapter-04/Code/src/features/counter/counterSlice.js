@@ -1,9 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,createReducer, combineReducers } from "@reduxjs/toolkit";
+
 
 const initialState = {
     value:0
 }
 
+const additionalReducer = createReducer(initialState,(builder)=>{
+    builder
+        .addCase('reset',(state)=>{
+            state.value=0;
+        })
+        .addCase('incrementByAmount',(state,action)=>{
+            state.value += action.payload
+        })
+        .addDefaultCase(state=>state||initialState)
+})
 
 const counterSlice = createSlice({
     name:'counter',
@@ -15,12 +26,33 @@ const counterSlice = createSlice({
         decrement:(state)=>{
             state.value -=1
         },
-        incrementByAmount:(state,payload)=>{
-            state.value=action.payload
-        }
+        additionalReducer
+        // incrementByAmount:(state,payload)=>{
+        //     state.value=action.payload
+        // }
     }
 })
 
-export const {increment,decrement,incrementByAmount} = counterSlice.actions
 
-export default counterSlice.reducer
+
+// const combinedReducer = counterSlice.reducer;
+
+// const finalReducer = (state,action)=>{
+//     combinedReducer(state,action);
+//     additionalReducer(state,action)
+// }
+
+const rootReducer = combineReducers({
+    counter:counterSlice.reducer,
+    additional: additionalReducer
+})
+
+// console.log(rootReducer.state)
+
+// counterSlice.reducer = finalReducer;
+
+// export const {increment,decrement,incrementByAmount} = counterSlice.actions
+export const {increment,decrement,reset,incrementByAmount} = counterSlice.actions
+
+// export default counterSlice.reducer
+export default rootReducer;
