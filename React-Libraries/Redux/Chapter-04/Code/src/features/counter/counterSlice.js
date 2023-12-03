@@ -5,16 +5,16 @@ const initialState = {
     value:0
 }
 
-const additionalReducer = createReducer(initialState,(builder)=>{
-    builder
-        .addCase('reset',(state)=>{
-            state.value=0;
-        })
-        .addCase('incrementByAmount',(state,action)=>{
-            state.value += action.payload
-        })
-        .addDefaultCase(state=>state||initialState)
-})
+// const additionalReducer = createReducer(initialState,(builder)=>{
+//     builder
+//         .addCase('reset',(state)=>{
+//             state.value=0;
+//         })
+//         .addCase('incrementByAmount',(state,action)=>{
+//             state.value += action.payload
+//         })
+//         .addDefaultCase(state=>state||initialState)
+// })
 
 const counterSlice = createSlice({
     name:'counter',
@@ -26,10 +26,7 @@ const counterSlice = createSlice({
         decrement:(state)=>{
             state.value -=1
         },
-        additionalReducer
-        // incrementByAmount:(state,payload)=>{
-        //     state.value=action.payload
-        // }
+
     }
 })
 
@@ -42,17 +39,17 @@ const counterSlice = createSlice({
 //     additionalReducer(state,action)
 // }
 
-const rootReducer = combineReducers({
-    counter:counterSlice.reducer,
-    additional: additionalReducer
-})
+// const rootReducer = combineReducers({
+//     counter:counterSlice.reducer,
+//     additional: additionalReducer
+// })
 
 // console.log(rootReducer.state)
 
 // counterSlice.reducer = finalReducer;
 
 // export const {increment,decrement,incrementByAmount} = counterSlice.actions
-export const {increment,decrement,reset,incrementByAmount} = counterSlice.actions
+export const {increment,decrement} = counterSlice.actions
 
 // export default counterSlice.reducer
-export default rootReducer;
+export default counterSlice.reducer;
