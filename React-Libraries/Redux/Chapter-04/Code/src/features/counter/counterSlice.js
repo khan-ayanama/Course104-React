@@ -1,20 +1,13 @@
-import { createSlice,createReducer, combineReducers } from "@reduxjs/toolkit";
+import { createSlice,createReducer, combineReducers, createAction } from "@reduxjs/toolkit";
 
 
 const initialState = {
     value:0
 }
 
-// const additionalReducer = createReducer(initialState,(builder)=>{
-//     builder
-//         .addCase('reset',(state)=>{
-//             state.value=0;
-//         })
-//         .addCase('incrementByAmount',(state,action)=>{
-//             state.value += action.payload
-//         })
-//         .addDefaultCase(state=>state||initialState)
-// })
+const incrementBonus = createAction('reward/increment')
+const decrementBonus = createAction('decrement')
+const hello = createAction('decrement')
 
 const counterSlice = createSlice({
     name:'counter',
@@ -26,29 +19,18 @@ const counterSlice = createSlice({
         decrement:(state)=>{
             state.value -=1
         },
-
+    },
+    extraReducers:(builder)=>{
+        builder.addCase(incrementBonus,(state,action)=>{
+            state.value++;
+        })
+        .addCase(decrementBonus,(state,action)=>{
+            state.value--;
+        })
     }
 })
 
 
-
-// const combinedReducer = counterSlice.reducer;
-
-// const finalReducer = (state,action)=>{
-//     combinedReducer(state,action);
-//     additionalReducer(state,action)
-// }
-
-// const rootReducer = combineReducers({
-//     counter:counterSlice.reducer,
-//     additional: additionalReducer
-// })
-
-// console.log(rootReducer.state)
-
-// counterSlice.reducer = finalReducer;
-
-// export const {increment,decrement,incrementByAmount} = counterSlice.actions
 export const {increment,decrement} = counterSlice.actions
 
 // export default counterSlice.reducer
