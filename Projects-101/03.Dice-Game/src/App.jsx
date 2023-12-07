@@ -1,10 +1,15 @@
-import React from "react";
-import LandingPage from "./LandingPage/LandingPage";
+import React, { useState } from "react";
+import LandingPage from "./components/LandingPage/LandingPage";
+import StartGame from "./components/Start Game/StartGame";
 
 const App = () => {
+  const [isGameStarted,setGameStarted] = useState(false)
+  function startGame(){
+    setGameStarted(prev=>!prev)
+  }
   return <React.StrictMode>
     <div className="container">
-    <LandingPage/>
+      {isGameStarted?<StartGame/>:<LandingPage toggle={startGame}/>}
     </div>
   </React.StrictMode>
 }
