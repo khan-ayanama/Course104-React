@@ -23,7 +23,6 @@ const Container = styled.div`
     h3{
         font-size: 1.5rem;
         margin: 1em 0;
-        /* background-color: ; */
     }
     li{
         list-style-type: none;

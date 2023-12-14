@@ -1,18 +1,19 @@
 import styled from "styled-components"
 
-const TopBar = () => {
+const TopBar = ({selectDice,handleSelect,totalScore}) => {
     const num = [1,2,3,4,5,6]
+
     return (
         <Container>
             <div className="score">
-                <h1>0</h1>
+                <h1>{totalScore}</h1>
                 <p>Total Score</p>
             </div>
             <div className="guess">
-                <h3 className="warning">Please Select the number</h3>
+                {selectDice==undefined?<h3 className="warning">Please Select the number</h3>:''}
                 <div className="number-options">
-                    {num.map(number=>{
-                        return <span key={number} className="number">{number}</span>
+                    {num.map((number,i)=>{
+                        return <span key={i} className={`number ${selectDice === i?"selected":""}`} onClick={()=>handleSelect(i)} >{number}</span>
                     })}
                 </div>
                 <h3>Select the Number from Above</h3>
@@ -24,7 +25,6 @@ const TopBar = () => {
 export default TopBar;
 
 const Container = styled.div`
-    border: 2px solid red;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,5 +64,10 @@ const Container = styled.div`
     h3.warning{
         color: red;
         /* color: transparent; */
+    }
+    .selected{
+        background-color: black;
+        color: white;
+        border: transparent;
     }
 `

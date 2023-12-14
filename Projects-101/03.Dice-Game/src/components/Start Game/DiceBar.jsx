@@ -4,25 +4,29 @@ import styled from "styled-components";
 import Button from "../Button/Button";
 import Rules from "./Rules";
 
-const DiceBar = () =>{
+const DiceBar = ({diceNumber,diceNumberGenerate,setTotalScore}) =>{
     const [isRuleVisible,setRuleVisible] = useState(false)
     const rulesInfo = ()=>{
         setRuleVisible(value=>!value)
     }
+    const resetScore = () =>{
+        setTotalScore(0)
+    }
+    
+
     return(
         <Container>
             <div className="img-section">
-                <img src="/images/dice/dice_1.png" alt="Dice" />
+                <img src={`/images/dice/dice_${diceNumber}.png`} alt="Dice" onClick={diceNumberGenerate}/>
             </div>
             <div className="dice-info">
                 <h3>Click on Dice to Roll</h3>
                 <div className="dice-btn">
-                    <Button btn_text={'Reset Score'} />
+                    <Button btn_text={'Reset Score'} event={resetScore}/>
                     <Button btn_text={'Show Rules'} event={rulesInfo}/>
                 </div>
             </div>
             {isRuleVisible?<Rules/>:''}
-            {/* // <Rules/> */}
         </Container>
     )
 }
@@ -30,7 +34,6 @@ const DiceBar = () =>{
 export default DiceBar;
 
 const Container = styled.div`
-    /* background-color: lightblue; */
     display: flex;
     flex-direction: column;
     gap: 2em;
