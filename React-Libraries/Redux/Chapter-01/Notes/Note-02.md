@@ -48,7 +48,6 @@ Using the concepts learnt in this chapter. Make a Async type of call from a new 
 
     // ACTION CREATORS
     // actionCreator.js
-    import { title } from "process"
 
     const Increment = () => {
         return {type:'increment'}

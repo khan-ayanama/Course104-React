@@ -1,4 +1,6 @@
+import { applyMiddleware } from "redux";
 import { createStore } from "redux";
+import logger from 'redux-logger'
 
 const reducer = (state={amount:100},action) => {
     // console.log("STATE",state)
@@ -8,12 +10,12 @@ const reducer = (state={amount:100},action) => {
     return state;
 }
 
-const store = createStore(reducer)
+const store = createStore(reducer,applyMiddleware(logger.default))
 
 
 store.dispatch({type:'in2crement'})
-console.log(store.getState())
+// console.log(store.getState())
 store.dispatch({type:'increment'})
-console.log(store.getState())
+// console.log(store.getState())
 store.dispatch({type:'increment'})
-console.log(store.getState())
+// console.log(store.getState())
