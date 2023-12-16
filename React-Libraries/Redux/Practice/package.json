@@ -1,12 +1,16 @@
 {
-  "name": "code",
+  "name": "practice",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "file-01.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^5.0.0"
+  }
 }
