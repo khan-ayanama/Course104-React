@@ -67,7 +67,7 @@ function decrementByAmount(value){
 
 // // Dispatching an action
 // console.log('FIRST:01-->',store.getState())
-// store.dispatch(increment())
+store.dispatch(increment())
 // console.log('TWO:02-->',store.getState())
 console.log('bonus',store.dispatch({type:'increase'}))
 
