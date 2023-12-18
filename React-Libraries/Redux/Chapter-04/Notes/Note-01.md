@@ -10,7 +10,7 @@ Add the Redux Toolkit and React-Redux packages to your project:
 
 ## Create a Redux Store
 
-Create a file named src/app/store.js. Import the configureStore API from Redux Toolkit. We'll start by creating an empty Redux store, and exporting it:
+Create a file named src/app/store.js. Import the configureStore API from Redux Toolkit. We'll start by creating an empty Redux store, and exporting it
 
 ```js
     // app/store.js
