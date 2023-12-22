@@ -31,7 +31,7 @@ Many problems ESLint finds can be automatically fixed using the --fix option.
 
 * ESLint uses Espree for js parsing.
 * ESLint uses an AST to evaluate patterns in code.
-* ESLtn is completely pluggable, every single rule is a plugin and you can add more at runtime.
+* ESLint is completely pluggable, every single rule is a plugin and you can add more at runtime.
 * In order to install the ESLint in your application, you need Node.js.
 * To install ESLint globally we use command `npm install eslint -g`
 * To install locally in application `npm install eslint --save-dev`
