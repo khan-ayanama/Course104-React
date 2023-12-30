@@ -66,29 +66,6 @@ npm run build
 
 This will process your CSS or Sass files and include them in the output bundle.
 
-`Additional Notes:`
-If you haven't already, make sure you have the Babel configuration and loader set up for handling JavaScript files.
-
-```bash
-npm install babel-loader @babel/core @babel/preset-env --save-dev
-Update the webpack configuration to include the Babel loader:
-```
-
-```javascript
-{
-  test: /\.js$/,
-  exclude: /node_modules/,
-  use: {
-    loader: 'babel-loader',
-    options: {
-      presets: ['@babel/preset-env'],
-    },
-  },
-},
-```
-
-With these configurations, you should be able to handle CSS and Sass files in your webpack project.
-
 ## Cache Busting
 
 Certainly, Boss! Cache busting is a technique used to ensure that the browser always fetches the latest version of a file by changing its filename whenever its content changes.
