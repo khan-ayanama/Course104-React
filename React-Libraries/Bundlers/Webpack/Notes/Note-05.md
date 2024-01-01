@@ -120,9 +120,10 @@ npm run build
 
 This setup ensures that you have distinct configurations for development and production in your webpack setup
 
-## HTML-Loader and File-loader
+## HTML-Loader
 
-In webpack, html-loader and file-loader are useful loaders for processing HTML and handling file assets like images and fonts. Here's how you can use them in your webpack configuration:
+`Note:` file-loader is deprecated
+In webpack, html-loader are useful loaders for processing HTML and handling file assets like images and fonts. Here's how you can use them in your webpack configuration:
 
 - html-loader:
   html-loader allows you to import and bundle HTML files as string content within your JavaScript files.
@@ -131,43 +132,6 @@ In webpack, html-loader and file-loader are useful loaders for processing HTML a
 
 ```bash
 npm install html-loader --save-dev
-```
-
-`Configuration:`
-
-```javascript
-// webpack.config.js
-const path = require("path");
-
-module.exports = {
-  // other configurations...
-  module: {
-    rules: [
-      {
-        test: /\.html$/,
-        use: "html-loader",
-      },
-    ],
-  },
-};
-```
-
-Now, you can import HTML files in your JavaScript files:
-
-```javascript
-// example.js
-import myHtml from "./my-file.html";
-
-// Use 'myHtml' as a string containing the HTML content.
-```
-
-- file-loader:
-  file-loader helps you handle file assets by copying them to the output directory and providing a URL to the copied file.
-
-`Installation:`
-
-```bash
-npm install file-loader --save-dev
 ```
 
 `Configuration:`
@@ -196,43 +160,6 @@ module.exports = {
 ```
 
 Now, you can import image files in your JavaScript files:
-
-```javascript
-// example.js
-import myImage from "./images/my-image.png";
-
-// Use 'myImage' as a URL to the copied image file.
-```
-
-- Combining html-loader and file-loader:
-  You can combine these loaders to handle HTML files that include references to image files:
-
-```javascript
-// webpack.config.js
-const path = require("path");
-
-module.exports = {
-  // other configurations...
-  module: {
-    rules: [
-      {
-        test: /\.html$/,
-        use: "html-loader",
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
-        use: {
-          loader: "file-loader",
-          options: {
-            name: "[name].[hash].[ext]", // Output filename format
-            outputPath: "images/", // Output directory
-          },
-        },
-      },
-    ],
-  },
-};
-```
 
 Now, you can have an HTML file like this:
 

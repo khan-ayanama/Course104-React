@@ -66,6 +66,40 @@ npm run build
 
 This will process your CSS or Sass files and include them in the output bundle.
 
+## devtools
+
+In a webpack configuration, "devtool" is an option that determines how source maps are generated and included in the bundle. Source maps are files that map the code in your bundled and minified JavaScript back to the original source code, making it easier to debug and trace issues.
+
+The "devtool" option accepts various values, each with its own trade-offs in terms of build speed and debugging capabilities.
+
+Here are some common values for the "devtool" option:
+
+`"eval":` This generates source maps in a Data URL format, and it's typically faster to build but might sacrifice some debugging quality.
+
+```javascript
+devtool: "eval";
+```
+
+`"source-map":` This generates a separate source map file with full original source code information. It provides the best quality for debugging but can slow down the build process.
+
+```javascript
+devtool: "source-map";
+```
+
+`"cheap-source-map":` Similar to "source-map" but excludes column-mappings in the source map, making it faster to build.
+
+```javascript
+devtool: "cheap-source-map";
+```
+
+`"eval-source-map":` Like "eval" but produces source maps in a separate file.
+
+```javascript
+devtool: "eval-source-map";
+```
+
+The choice of the "devtool" option depends on your specific requirements, such as the balance between build speed and debugging quality. For development, you might prefer a faster build with acceptable debugging quality, while for production, you may opt for a slower build with high-quality source maps for better debugging capabilities.
+
 ## Cache Busting
 
 Certainly, Boss! Cache busting is a technique used to ensure that the browser always fetches the latest version of a file by changing its filename whenever its content changes.
@@ -88,25 +122,12 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-      },
-      {
-        test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].[contenthash].css", // Content hashing for CSS files
-    }),
-  ],
 };
 ```
 
 `In this configuration:`
 The output filenames for JavaScript and CSS files include [contenthash], ensuring content-based hashing.
-The MiniCssExtractPlugin is used to extract CSS into separate files.
-Simply run npm run build to see webpack create hashed files in your dist directory.
-
-Remember, webpack automatically provides content hashing for free, and plugins like MiniCssExtractPlugin take advantage of this feature to ensure cache busting for your assets.
