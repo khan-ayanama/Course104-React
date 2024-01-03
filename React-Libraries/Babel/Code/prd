@@ -1,0 +1,6 @@
+"use strict";
+
+var number = function number(_number) {
+  return _number * 2;
+};
+number(4);
