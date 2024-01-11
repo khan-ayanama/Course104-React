@@ -555,3 +555,180 @@ export default function Root() {
   );
 }
 ```
+
+## Global Pending UI
+
+As the user navigates the app, React Router will leave the old page up as data is loading for the next page. You may have noticed the app feels a little unresponsive as you click between the list. Let's provide the user with some feedback so the app doesn't feel unresponsive.
+
+React Router is managing all of the state behind the scenes and reveals the pieces of it you need to build dynamic web apps. In this case, we'll use the useNavigation hook.
+
+```js
+// useNavigation to add global pending UI
+import {
+  // existing code
+  useNavigation,
+} from "react-router-dom";
+
+// existing code
+
+export default function Root() {
+  const { contacts } = useLoaderData();
+  const navigation = useNavigation();
+
+  return (
+    <>
+      <div id="sidebar">{/* existing code */}</div>
+      <div
+        id="detail"
+        className={navigation.state === "loading" ? "loading" : ""}
+      >
+        <Outlet />
+      </div>
+    </>
+  );
+}
+```
+
+useNavigation returns the current navigation state: it can be one of "idle" | "submitting" | "loading".
+
+In our case, we add a "loading" class to the main part of the app if we're not idle. The CSS then adds a nice fade after a short delay (to avoid flickering the UI for fast loads). You could do anything you want though, like show a spinner or loading bar across the top.
+
+## Deleting Records
+
+Note the action points to "destroy". Like `<Link to>`, `<Form action>` can take a relative value. Since the form is rendered in contact/:contactId, then a relative action with destroy will submit the form to contact/:contactId/destroy when clicked.
+
+```js
+// src/routes/destroy.jsx
+// Add the destroy action
+import { redirect } from "react-router-dom";
+import { deleteContact } from "../contacts";
+
+export async function action({ params }) {
+  await deleteContact(params.contactId);
+  return redirect("/");
+}
+
+// src/main.jsx
+// Add the destroy to the route config
+/* existing code */
+import { action as destroyAction } from "./routes/destroy";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    /* existing root route props */
+    children: [
+      /* existing routes */
+      {
+        path: "contacts/:contactId/destroy",
+        action: destroyAction,
+      },
+    ],
+  },
+]);
+```
+
+Here is how it works behind the scenes
+
+When the user clicks the submit button:
+
+- `<Form>` prevents the default browser behavior of sending a new POST request to the server, but instead emulates the browser by creating a POST request with client side routing
+- The` <Form action="destroy">` matches the new route at "contacts/:contactId/destroy" and sends it the request
+- After the action redirects, React Router calls all of the loaders for the data on the page to get the latest values (this is "revalidation"). useLoaderData returns new values and causes the components to
+
+## Contextual Errors
+
+When user faces error in destroy navigation it should not throw an error at root, so for particular destroy root
+
+```js
+[
+  /* other routes */
+  {
+    path: "contacts/:contactId/destroy",
+    action: destroyAction,
+    errorElement: <div>Oops! There was an error.</div>,
+  },
+];
+```
+
+Our user now has more options than slamming refresh, they can continue to interact with the parts of the page that aren't having trouble 🙌
+
+Because the destroy route has its own errorElement and is a child of the root route, the error will render there instead of the root. As you probably noticed, these errors bubble up to the nearest errorElement. Add as many or as few as you like, as long as you've got one at the root.
+
+## Index Routes
+
+When a route has children, and you're at the parent route's path, the `<Outlet>` has nothing to render because no children match. You can think of index routes as the default child route to fill in that space.
+
+```js
+// src/routes/index.jsx
+// create new page index.jsx
+export default function Index() {
+  return (
+    <p id="zero-state">
+      This is a demo for React Router.
+      <br />
+      Check out{" "}
+      <a href="https://reactrouter.com">the docs at reactrouter.com</a>.
+    </p>
+  );
+}
+
+// src/main.jsx
+// Configuring the index route
+import Index from "./routes/index";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    action: rootAction,
+    children: [
+      { index: true, element: <Index /> },
+      /* existing routes */
+    ],
+  },
+]);
+```
+
+Note the { index:true } instead of { path: "" }. That tells the router to match and render this route when the user is at the parent route's exact path, so there are no other child routes to render in the `<Outlet>`.
+
+## Cancel Button
+
+On the edit page we've got a cancel button that doesn't do anything yet. We'd like it to do the same thing as the browser's back button.
+
+We'll need a click handler on the button as well as useNavigate from React Router
+
+```js
+// src/routes/edit.jsx
+// Cancel button click handler useNavigate
+import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
+
+export default function EditContact() {
+  const { contact } = useLoaderData();
+  const navigate = useNavigate();
+
+  return (
+    <Form method="post" id="contact-form">
+      {/* existing code */}
+
+      <p>
+        <button type="submit">Save</button>
+        <button
+          type="button"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Cancel
+        </button>
+      </p>
+    </Form>
+  );
+}
+```
+
+A `<button type="button">`, while seemingly redundant, is the HTML way of preventing a button from submitting its form.
+
+## URL Search Params and Get Submission
