@@ -1,9 +1,11 @@
+import Navigation from "./components/Navigation";
+import Hero from "./components/Hero";
+
 export default function App() {
   return (
-    <nav>
-      <div className="brand_logo">
-        <img src="" alt="" />
-      </div>
-    </nav>
+    <>
+      <Navigation />
+      <Hero />
+    </>
   );
 }
