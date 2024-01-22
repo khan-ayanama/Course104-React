@@ -62,3 +62,14 @@ require("@babel/core").transformSync("code", {
     "plugins": [ ... ],
   }
 ```
+
+## Effective config
+
+`printing config for files`
+
+```bash
+BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
+
+# priority for printing
+babel.config.json < .babelrc < programmatic options from @babel/cli
+```
