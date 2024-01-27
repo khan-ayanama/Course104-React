@@ -1,19 +1,31 @@
 import styled from "styled-components";
 
-export default function Navbar() {
+export default function Navbar({ searchFood, filterFoodWithTag }) {
+  function handleSearch(e) {
+    searchFood(e.target.value);
+  }
+
+  function handleTag(e) {
+    filterFoodWithTag(e.target.innerText);
+  }
   return (
     <Navigation>
       <NavContainer>
         <div className="nav_logo">
           <img src="logo.svg" alt="Logo" />
         </div>
-        <input type="text" name="search" placeholder="Search" />
+        <input
+          type="text"
+          name="search"
+          placeholder="Search"
+          onChange={handleSearch}
+        />
       </NavContainer>
       <div className="nav_buttons">
-        <Tags>All</Tags>
-        <Tags>Breakfast</Tags>
-        <Tags>Lunch</Tags>
-        <Tags>Dinner</Tags>
+        <Tags onClick={handleTag}>All</Tags>
+        <Tags onClick={handleTag}>Breakfast</Tags>
+        <Tags onClick={handleTag}>Lunch</Tags>
+        <Tags onClick={handleTag}>Dinner</Tags>
       </div>
     </Navigation>
   );
