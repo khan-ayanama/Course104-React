@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { IoAdd } from "react-icons/io5";
 
-const Navigation = () => {
+const Navigation = ({ openModal }) => {
   function handleChange(e) {
     console.log(e);
   }
@@ -18,13 +19,15 @@ const Navigation = () => {
           <IoSearch className="absolute text-2xl mt-2 ml-2" />
           <input
             type="text"
-            //   className="w-full text-xl text-white px-2 py-1 rounded-md bg-gray-700 border-black"
             className="w-full bg-gray-700 border-white border-x border-y rounded-md px-9 py-2 focus:outline-none"
             onChange={handleChange}
             placeholder="Search Contact"
           />
         </div>
-        <IoAdd className="text-5xl text-black bg-white rounded-full ml-2" />
+        <IoAdd
+          className="text-5xl text-black bg-white rounded-full ml-2"
+          onClick={openModal}
+        />
       </div>
     </>
   );
