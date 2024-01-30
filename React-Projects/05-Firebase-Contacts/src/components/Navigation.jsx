@@ -2,9 +2,9 @@ import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { IoAdd } from "react-icons/io5";
 
-const Navigation = ({ openModal }) => {
+const Navigation = ({ openModal,searchContact }) => {
   function handleChange(e) {
-    console.log(e);
+    searchContact(e.target.value)
   }
   return (
     <>
