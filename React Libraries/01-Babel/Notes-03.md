@@ -1,35 +1,35 @@
-# Configurations
+# Configuring Babel
 
 ## .babelrc vs babel.config.json
 
 Both _.babelrc_ and _babel.config.json_ serve as configuration files for Babel, but they have some differences in terms of their use cases and flexibility.
 
-- `File Name and Location:`
+### File Name and Location
 
 `.babelrc:` This configuration file is typically named .babelrc and is located in the root directory of your project.
 `babel.config.json:` This file is named babel.config.json and is also placed in the root directory of your project.
 
-- `Configuration Loading:`
+### Configuration Loading
 
 `.babelrc:` Babel will automatically look for a .babelrc file in the project directory and use the configuration specified in that file.
 `babel.config.json:` This file is used when you want to explicitly define the Babel configuration. It provides a centralized and standardized way to configure Babel across projects.
 
-- `Project Scope:`
+### Project Scope
 
 `.babelrc:` The configuration specified in a .babelrc file applies to the directory where the file is located and its subdirectories. It follows a project-specific scope.
 `babel.config.json:` The configuration in a babel.config.json file applies to the entire project, overriding any other Babel configurations found in subdirectories. It follows a project-wide scope.
 
-- `Package Access:`
+### Package Access
 
 `.babelrc:` The configuration can be added to the package.json file using a "babel" field. This is useful if you prefer keeping the configuration within the package.json.
 `babel.config.json:` It is a separate file specifically designed for Babel configuration, making it more straightforward and explicit.
 
-- `Programmatic Options:`
+## Programmatic Options
 
 `.babelrc:` Babel configurations can also be set programmatically using the babel.transform() API, allowing for dynamic configuration based on runtime conditions.
 `babel.config.json:` The configuration in babel.config.json is static and doesn't support dynamic changes based on runtime conditions.
 
-- `Environment Variable Overrides:`
+### Environment Variable Overrides
 
 `.babelrc:` You can use environment variables to conditionally apply parts of the configuration in a .babelrc file.
 `babel.config.json:` Allows for more flexibility in handling environment variables and overrides.
@@ -107,11 +107,6 @@ configuration:
 
 `NOTE:` plugins run in ascending order while presets run in descending order.
 
-## babel.config.json
-
-The babel.config.json file is often used for project-wide configurations and provides a centralized approach to Babel settings.
-You can use same settings in babel.config.json
-
 ## Babel Module Formatters
 
 Babel allows you to specify different module formats using the modules option. Here's how you can configure Babel to handle ES6 modules and transform them into different module formats like CommonJS, AMD, or UMD:
@@ -150,72 +145,6 @@ Here's a breakdown of the options:
 
 Choose the format that best suits your project's needs. If you have a specific environment or module system in mind, you can configure Babel accordingly.
 
-## Babel with Webpack
-
-When working with ES6 modules in a project that uses bundlers like Webpack, the typical approach is to keep the ES6 module syntax during development and let the bundler handle the transformation and bundling. Here's a general guide on how to handle ES6 modules with Webpack:
-
-`Install Webpack:`
-If you haven't already, install Webpack and the necessary loaders.
-
-```bash
-npm install webpack webpack-cli --save-dev
-```
-
-`Install Babel:`
-Install Babel and the necessary presets and plugins for handling ES6 syntax.
-
-```bash
-npm install @babel/core @babel/preset-env babel-loader --save-dev
-```
-
-`Create Babel Configuration:`
-Create a .babelrc file in your project's root directory to configure Babel. For example:
-
-```json
-{
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "targets": {
-          "browsers": ["last 2 versions", "ie >= 11"]
-        }
-      }
-    ]
-  ]
-}
-```
-
-Adjust the "targets" according to your project's browser compatibility requirements.
-
-`Configure Webpack:`
-Create a webpack.config.js file to configure Webpack. For example:
-
-```js
-const path = require("path");
-
-module.exports = {
-  entry: "./src/index.js", // Entry point of your application
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
-      },
-    ],
-  },
-};
-```
-
-This configuration tells Webpack to use Babel for JavaScript files and output the bundled code to dist/bundle.js.
-
 ## Babel vs Webpack
 
 `Babel:` Transpiles JavaScript code, allowing you to use the latest language features in your source code.
@@ -223,6 +152,17 @@ This configuration tells Webpack to use Babel for JavaScript files and output th
 `Webpack (or other bundlers):` Bundles your JavaScript code, along with other assets, into optimized files suitable for deployment in production.
 
 If you want to use Babel and a bundler together, it's common to configure the bundler (e.g., Webpack) to use Babel as a loader for processing JavaScript files. This way, Babel is invoked by the bundler to transpile the code during the bundling process.
+
+## Effective config
+
+`printing config for files`
+
+```bash
+BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
+
+# priority for printing
+babel.config.json < .babelrc < programmatic options from @babel/cli
+```
 
 ## Babel core-js
 

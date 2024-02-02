@@ -102,7 +102,7 @@ The choice of the "devtool" option depends on your specific requirements, such a
 
 ## Cache Busting
 
-Certainly, Boss! Cache busting is a technique used to ensure that the browser always fetches the latest version of a file by changing its filename whenever its content changes.
+Cache busting is a technique used to ensure that the browser always fetches the latest version of a file by changing its filename whenever its content changes.
 
 Starting from webpack 4, content hashing is supported by default using the [contenthash] placeholder. The MiniCssExtractPlugin can be used for extracting CSS with content hashing.
 
