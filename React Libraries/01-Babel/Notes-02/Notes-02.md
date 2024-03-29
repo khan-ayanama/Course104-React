@@ -8,7 +8,7 @@
     npm install --save-dev @babel/core @babel/cli @babel/preset-env
     ```
 
-2.  Setup babel.config.json file at rood direcoty
+2.  Setup babel.config.json file at root direcoty
 
     ```json
     "presets": [
