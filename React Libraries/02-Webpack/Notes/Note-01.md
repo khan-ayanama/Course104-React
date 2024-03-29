@@ -14,7 +14,7 @@ By default its value is `./src/index.js`, but you can specify a different (or mu
 // webpack.config.js
 
 module.exports = {
-  entry: './path/to/my/entry/file.js',
+  entry: "./path/to/my/entry/file.js",
 };
 ```
 
@@ -27,13 +27,13 @@ You can configure this part of the process by specifying an output field in your
 ```js
 // webpack.config.js
 
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  entry: './path/to/my/entry/file.js',
+  entry: "./path/to/my/entry/file.js",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'my-first-webpack.bundle.js',
+    path: path.resolve(__dirname, "dist"),
+    filename: "my-first-webpack.bundle.js",
   },
 };
 ```
@@ -50,14 +50,14 @@ At a high level, loaders have two properties in your webpack configuration:
 ```js
 // webpack.config.js
 
-const path = require('path');
+const path = require("path");
 
 module.exports = {
   output: {
-    filename: 'my-first-webpack.bundle.js',
+    filename: "my-first-webpack.bundle.js",
   },
   module: {
-    rules: [{ test: /\.txt$/, use: 'raw-loader' }],
+    rules: [{ test: /\.txt$/, use: "raw-loader" }],
   },
 };
 
@@ -73,14 +73,14 @@ In order to use a plugin, you need to require() it and add it to the plugins arr
 ```js
 // webpack.config.js
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack'); //to access built-in plugins
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack"); //to access built-in plugins
 
 module.exports = {
   module: {
-    rules: [{ test: /\.txt$/, use: 'raw-loader' }],
+    rules: [{ test: /\.txt$/, use: "raw-loader" }],
   },
-  plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
+  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
 };
 ```
 
@@ -90,7 +90,7 @@ By setting the mode parameter to either development, production or none, you can
 
 ```js
 module.exports = {
-  mode: 'production',
+  mode: "production",
 };
 ```
 
