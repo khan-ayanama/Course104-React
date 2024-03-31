@@ -1,174 +1,83 @@
-# Redux Toolkit
+# Redux-Fundamentals
 
-## Installation
+Redux toolkit is recommended way of using redux but here we will learn about it's fundamental first.
+
+## What is Redux
+
+Redux is pattern or library used to manage and update the state of application using an event called "actions", It serves as the central store of an application.
+
+## Why should use?
+
+It manages the global state for an application and pattern and tool provided by redux help us to change, update and how those changes will execute in app.
+
+Only use redux when you have bigger application where you need to frequently work with the state of an application.
+
+## Redux Libaries and Toolkit
+
+`React-Redux` This libarary helps in working with react.
+`Redux Toolkit` It is a main redux package.
+`Redux Devtools extension` This tool show the history of changes which helps in debugging.
+
+## Redux Store
+
+Redux store holds the golbal state of an application.
+A store is a JS object with a few special function and abilities.
+You should never modify store directly.
+When you want to update you need to `dispatch` an `action` which runs a `reducer` function which will eventually update the global state you can notified by `subscribers` that the state has been updated.
+
+### Installation of redux.
 
 ```bash
-    npm i @reduxjs/toolkit
+npm install redux
 ```
 
-## Creating a Redux Store
+## Working Store
+
+When a user dispatch an action by `store.dispatch(action)` it calls a reducer function which determines the type of action based on that it changes the state of a store.
 
 ```js
-import { configureStore } from "@reduxjs/toolkit";
+// Importing createStore
+import { createStore } from "redux";
 
-export const store = configureStore({
-  reducer: {},
-});
-```
-
-## Providing Store to react application
-
-Once the store is created, we can make it available to our React components by putting a React-Redux `<Provider>` around our application in src/index.js. Import the Redux store we just created, put a `<Provider>` around your `<App>`, and pass the store as a prop:
-
-```js
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import { store } from "./app/store";
-import { Provider } from "react-redux";
-
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
-);
-```
-
-## Create a Redux State slice
-
-Creating a slice requires a string name to identify the slice, an initial state value, and one or more reducer functions to define how the state can be updated. Once a slice is created, we can export the generated Redux action creators and the reducer function for the whole slice.
-
-Redux requires that we write all state updates immutably, by making copies of data and updating the copies. However, Redux Toolkit's createSlice and createReducer APIs use Immer inside to allow us to write "mutating" update logic that becomes correct immutable updates.
-
-```jsx
-import { createSlice } from "@reduxjs/toolkit";
-
+// Initial Value of Store
 const initialState = {
   value: 0,
 };
 
-export const counterSlice = createSlice({
-  name: "counter",
-  initialState,
-  reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
-    },
-  },
-});
-
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
-
-export default counterSlice.reducer;
-```
-
-## Add slice to the store
-
-```jsx
-import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../features/counter/counterSlice";
-
-export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
-});
-```
-
-## Use Redux state and Actions in Components
-
-Now we can use the React-Redux hooks to let React components interact with the Redux store. We can read data from the store with useSelector, and dispatch actions using useDispatch. Create a src/features/counter/Counter.js file with a `<Counter>` component inside, then import that component into App.js and render it inside of `<App>`.
-
-```js
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "./counterSlice";
-
-export function Counter() {
-  const count = useSelector((state) => state.counter.value);
-  const dispatch = useDispatch();
-
-  return (
-    <div>
-      <div>
-        <button
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          Increment
-        </button>
-        <span>{count}</span>
-        <button
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          Decrement
-        </button>
-      </div>
-    </div>
-  );
+// Reducer function which has store's original state and action object dispatched by user.
+function counterReducer(state = initialState, action) {
+  switch (action.type) {
+    case "counter/incremented":
+      return { ...state, value: state.value + 1 };
+    case "counter/decremented":
+      return { ...state, value: state.value - 1 };
+    default:
+      return state;
+  }
 }
-```
 
-## RTK Query
+// Creating a Store and reducer Function as it's argument
+const store = createStore(counterReducer);
 
-## Create an API service
+// State of a Store
+console.log("State:", store.getState());
 
-```js
-// Need to use the React-specific entry point to import createApi
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-// Define a service using a base URL and expected endpoints
-export const pokemonApi = createApi({
-  reducerPath: "pokemonApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://pokeapi.co/api/v2/" }),
-  endpoints: (builder) => ({
-    getPokemonByName: builder.query({
-      query: (name) => `pokemon/${name}`,
-    }),
-  }),
+// Whenever state changes callback function of subscribe will be called by observer design pattern.
+store.subscribe(() => {
+  console.log("New State: ", store.getState());
 });
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
-export const { useGetPokemonByNameQuery } = pokemonApi;
+// Dispatching an action
+store.dispatch({ type: "counter/incremented" });
+store.dispatch({ type: "counter/decremented" });
 ```
 
-## Add Service to store
+`NOTE:`
 
-An RTKQ service generates a "slice reducer" that should be included in the Redux root reducer, and a custom middleware that handles the data fetching. Both need to be added to the Redux store.
-
-```js
-import { configureStore } from "@reduxjs/toolkit";
-// Or from '@reduxjs/toolkit/query/react'
-import { setupListeners } from "@reduxjs/toolkit/query";
-import { pokemonApi } from "./services/pokemon";
-
-export const store = configureStore({
-  reducer: {
-    // Add the generated reducer as a specific top-level slice
-    [pokemonApi.reducerPath]: pokemonApi.reducer,
-  },
-  // Adding the api middleware enables caching, invalidation, polling,
-  // and other useful features of `rtk-query`.
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(pokemonApi.middleware),
-});
-
-// optional, but required for refetchOnFocus/refetchOnReconnect behaviors
-// see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
-setupListeners(store.dispatch);
-```
+- Redux is a library for managing global application state
+- Redux is typically used with the React-Redux library for integrating Redux and React together
+- Redux Toolkit is the recommended way to write Redux logic
+- Redux uses several types of code
+- Actions are plain objects with a type field, and describe "what happened" in the app
+- Reducers are functions that calculate a new state value based on previous state + an action
+- A Redux store runs the root reducer whenever an action is dispatched

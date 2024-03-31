@@ -1,18 +1,5 @@
-# Redux Toolkit
+# Redux Concepts and Data flow
 
-## Store Setup with configureStore
+## Immutibility
 
-```js
-import { configureStore } from "@reduxjs/toolkit";
-import usersReducer from "./usersReducer";
-import postsReducer from "./postsReducer";
-
-const store = configureStore({
-  reducer: {
-    users: usersReducer,
-    posts: postsReducer,
-  },
-});
-
-export default store;
-```
+In redux we assume the object of state is immutible which means we cna't directly change it's value it is useful in recording history of a state.
