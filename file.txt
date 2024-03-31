@@ -1,10 +1,13 @@
-Project-01 + Babel --> 21 Jan - 27 Jan
-Project-02 + Webpack --> 28 Jan - 04 Feb
-Project-03 + React-Router-Dom --> 05 Feb - 12 Feb
-Project-04 + Firebase --> 13 Feb - 20 Feb
-Project-05 + Redux --> 21 Feb - 29 Feb
-Project-06 + React Query --> 01 Mar - 07 Mar
+Project-01 + Redux --> 01 May - 10 May
+Project-02 + React Query --> 11 May - 17 May
+Project-03 + 
+Project-04 + Firebase --> 23 Apr - 30 Apr
+Project-05 + 
+Project-06 + 
 Project-07 + Formik --> 08 Mar - 15 Mar
 Project-08 + RxJS --> 16 Mar - 23 Mar
 Project-09 + React-Testing-Library --> 24 Mar - 31 Mar
 Project-10 + Three.js --> 01 Apr - 08 Apr
+Babel --> 01 Apr - 05 Apr
+Webpack --> 06 Apr - 10 Apr
+React-Router-Dom --> 11 Apr - 22 Apr
