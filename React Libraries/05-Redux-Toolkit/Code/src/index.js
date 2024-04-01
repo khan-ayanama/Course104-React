@@ -1,38 +1,20 @@
-import { createStore, combineReducers } from "redux";
-import { counterReducer } from "./reducers/countReducer.js";
-import { todoReducer } from "./reducers/todoReducer.js";
-import { intialCount } from "./reducers/countReducer.js";
-import { initialTodo } from "./reducers/todoReducer.js";
+import { applyMiddleware, createStore } from "redux";
+import rootReducer from "./reducers/reducer.js";
 
-const initialState = {
-  todos: initialTodo,
-  counter: intialCount,
+const returnHello = (storeAPI) => (next) => (action) => {
+  setInterval(() => {
+    console.log("insie middlewar");
+  }, 1000);
+
+  return next(action);
 };
 
-const rootReducer = (state = initialState, action) => {
-  return {
-    todos: todoReducer(state.todos, action),
-    counter: counterReducer(state.counter, action),
-  };
-};
+const middlewareEnhancer = applyMiddleware(returnHello);
+const store = createStore(rootReducer, middlewareEnhancer);
 
-// const rootReducer = combineReducers({
-//   todos: todoReducer,
-//   counter: counterReducer,
-// });
-
-const store = createStore(rootReducer);
-
-// State of a Store
-console.log("State:", store.getState());
-console.log("new line");
-
-// Whenever state changes
 store.subscribe(() => {
-  console.log("New State: ", store.getState());
+  console.log("After change: ", store.getState());
 });
 
-store.dispatch({ type: "counter/incremented" });
-store.dispatch({ type: "counter/decremented" });
-store.dispatch({ type: "todo/incremented" });
-store.dispatch({ type: "todo/decremented" });
+const dispatchResult = store.dispatch({ type: "todo/incremented" });
+console.log(dispatchResult);

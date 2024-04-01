@@ -3,6 +3,7 @@ export const initialTodo = {
 };
 
 export function todoReducer(state = initialTodo, action) {
+  console.log("todsdoadsfasd");
   switch (action.type) {
     case "todo/incremented":
       return { ...state, numberOfTask: state.numberOfTask + 1 };
