@@ -137,26 +137,49 @@ npm install html-loader --save-dev
 `Configuration:`
 
 ```javascript
-// webpack.config.js
-const path = require("path");
+// webpack.common.config.js
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  // other configurations...
+  entry: "./src/index.js",
   module: {
     rules: [
       {
-        test: /\.(png|jpg|gif|svg)$/,
-        use: {
-          loader: "file-loader",
-          options: {
-            name: "[name].[hash].[ext]", // Output filename format
-            outputPath: "images/", // Output directory
-          },
-        },
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.html$/,
+        use: ["html-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+        type: "asset/resource",
       },
     ],
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./index.html",
+    }),
+  ],
 };
+
+// webpack.prod.js
+const path = require("path");
+const { default: merge } = require("webpack-merge");
+const common = require("./webpack.config.common");
+
+module.exports = merge(common, {
+  mode: "production",
+  output: {
+    filename: "[name].[contenthash].js",
+    path: path.resolve(__dirname, "dist"),
+    assetModuleFilename: "images/[hash][ext][query]",
+  },
+});
 ```
 
 Now, you can import image files in your JavaScript files:
@@ -165,7 +188,7 @@ Now, you can have an HTML file like this:
 
 ```html
 <!-- my-file.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />

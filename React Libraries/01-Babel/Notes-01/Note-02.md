@@ -38,6 +38,8 @@ Both _.babelrc_ and _babel.config.json_ serve as configuration files for Babel, 
   babel.config.json < .babelrc < programmatic options from @babel/cli
 ```
 
+`Note`: If you have both `.babelrc` and `babel.config.json`, Babel will use the configuration from `babel.config.json`.
+
 In summary, while .babelrc has been the traditional choice for Babel configuration and is suitable for many projects, babel.config.json provides a standardized and project-wide configuration, making it easier to manage configuration settings, especially in larger projects or those that follow a monorepo structure. The choice between them often depends on the specific needs and preferences of the project and development team.
 
 ## .babelrc template
@@ -213,6 +215,8 @@ This configuration tells Webpack to use Babel for JavaScript files and output th
 
 `Webpack (or other bundlers):` Bundles your JavaScript code, along with other assets, into optimized files suitable for deployment in production.
 
+`babel-loader`: It tells webpack to use babel for transpilation.
+
 If you want to use Babel and a bundler together, it's common to configure the bundler (e.g., Webpack) to use Babel as a loader for processing JavaScript files. This way, Babel is invoked by the bundler to transpile the code during the bundling process.
 
 ## Babel core-js
@@ -285,7 +289,5 @@ import "@babel/polyfill";
 Ensure that core-js is included before your application code, either through Babel configuration or manual import.
 
 Keep in mind that adding polyfills can increase the size of your JavaScript bundle. Consider using a bundler like Webpack to apply code splitting and load polyfills only when needed.
-
-As of my knowledge cutoff in January 2022, it's a good practice to check for updates and changes in the packages you use. The details provided here are based on the state of the tools and libraries up to that date.
 
 In summary, core-js/stable provides a more fine-grained control over polyfill inclusion, while @babel/polyfill is a more straightforward and inclusive solution. Consider your specific needs and preferences when choosing between them.

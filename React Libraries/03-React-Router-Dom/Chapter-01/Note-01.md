@@ -88,7 +88,6 @@ import { Outlet } from "react-router-dom";
 export default function Root() {
   return (
     <>
-      {/* all the other elements */}
       <div id="detail">
         <Outlet />
       </div>
@@ -125,83 +124,70 @@ export default function Root() {
 }
 ```
 
-## Loading Data
+## Loading Data (loader)
 
-URL, Layouts and data are tightly coupled or tripled together so if one changes results affecting others.
+If we want to load data according to url we use `useLoaderData` hook.
+It will keep data and UI in sync
 
-useLoaderData is a React hook provided by React Router (from version 6 onwards) used within components to access data that was loaded by their associated loader functions. This hook is part of the React Router library's approach to integrating data loading directly into the route configuration, making it easier to manage data fetching and rendering logic in a React application.
-
-Whenever path matches loader is called
+1. We define an async function to fetch data
+2. pass that function as loader at particular path
+3. useLoaderData inside Component to fetch data when route hits
 
 ```jsx
-// main.jsx
-import Root, { loader as rootLoader } from "./routes/root";
+// Defining a function
+export const productLoader = async () => {
+  const products = await getProducts("https://dummyjson.com/products");
+  console.log(products);
+  return products;
+};
+
+// Putting inside createBrowserRouter at particular path
+
+import { productLoader } from "./features/products/ProductList.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    // rootLoader function will be called everytime it matches the path
-    loader: rootLoader,
+    element: <App />,
+    errorElement: <Error />,
     children: [
       {
-        path: "contacts/:contactId",
-        element: <Contact />,
+        path: "products",
+        children: [
+          {
+            path: "",
+            // Here we added loader function
+            loader: productLoader,
+            element: <ProductsList />,
+          },
+          {
+            path: ":productId",
+            element: <Product />,
+          },
+        ],
       },
     ],
   },
 ]);
 
-// root.jsx
-import { Outlet, Link, useLoaderData } from "react-router-dom";
-import { getContacts } from "../contacts";
+// Use it inside component
+import { useLoaderData } from "react-router-dom";
+const ProductsList = () => {
+  // using useLoaderData
+  const { products } = useLoaderData();
 
-// useLoaderData hook access data loaded by associate loader
-export default function Root() {
-  const { contacts } = useLoaderData();
-  return (
-    <>
-      <div id="sidebar">
-        <h1>React Router Contacts</h1>
-        <nav>
-          {contacts.length ? (
-            <ul>
-              {contacts.map((contact) => (
-                <li key={contact.id}>
-                  <Link to={`contacts/${contact.id}`}>
-                    {contact.first || contact.last ? (
-                      <>
-                        {contact.first} {contact.last}
-                      </>
-                    ) : (
-                      <i>No Name</i>
-                    )}{" "}
-                    {contact.favorite && <span>★</span>}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>
-              <i>No contacts</i>
-            </p>
-          )}
-        </nav>
-      </div>
-    </>
-  );
-}
+  return <div>// Render DAta here</div>;
+};
 ```
 
-## Creating Contacts
+## Creating Contacts (action)
 
-The action function is invoked when navigating to a route that specifies an action, allowing for side effects or data mutations related to that navigation.
+When action is called from anywhere it reloads the data in `useLoaderData` and rerenders UI with updated data.
 
 ```jsx
 // root.jsx
-import { Outlet, Link, useLoaderData, Form } from "react-router-dom";
-import { getContacts, createContact } from "../contacts";
+import { useLoaderData, Form } from "react-router-dom";
+import { createContact } from "../contacts";
 
 export async function action() {
   const contact = await createContact();
@@ -247,11 +233,12 @@ const router = createBrowserRouter([
 ]);
 ```
 
-## URL Params in Loader
+## Param passed by loader to loaderFunction
 
-Note the :contactId URL segment. The colon (:) has special meaning, turning it into a "dynamic segment". Dynamic segments will match dynamic (changing) values in that position of the URL, like the contact ID. We call these values in the URL "URL Params", or just "params" for short.
+Note the :contactId URL segment. turning it into a "dynamic segment".
+Value will be passed as `params.contactId`.
 
-These params are passed to the loader with keys that match the dynamic segment. For example, our segment is named :contactId so the value will be passed as params.contactId.
+- Loader will pass the parameter id to the loaderFunction
 
 ```jsx
 // contact.jsx
@@ -289,92 +276,7 @@ const router = createBrowserRouter([
 ]);
 ```
 
-## Updating Data
-
-```jsx
-// edit.jsx
-import { Form, useLoaderData } from "react-router-dom";
-
-export default function EditContact() {
-  const { contact } = useLoaderData();
-
-  return (
-    <Form method="post" id="contact-form">
-      <p>
-        <span>Name</span>
-        <input
-          placeholder="First"
-          aria-label="First name"
-          type="text"
-          name="first"
-          defaultValue={contact.first}
-        />
-        <input
-          placeholder="Last"
-          aria-label="Last name"
-          type="text"
-          name="last"
-          defaultValue={contact.last}
-        />
-      </p>
-      <label>
-        <span>Twitter</span>
-        <input
-          type="text"
-          name="twitter"
-          placeholder="@jack"
-          defaultValue={contact.twitter}
-        />
-      </label>
-      <label>
-        <span>Avatar URL</span>
-        <input
-          placeholder="https://example.com/avatar.jpg"
-          aria-label="Avatar URL"
-          type="text"
-          name="avatar"
-          defaultValue={contact.avatar}
-        />
-      </label>
-      <label>
-        <span>Notes</span>
-        <textarea name="notes" defaultValue={contact.notes} rows={6} />
-      </label>
-      <p>
-        <button type="submit">Save</button>
-        <button type="button">Cancel</button>
-      </p>
-    </Form>
-  );
-}
-
-// main.jsx
-import EditContact from "./routes/edit";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
-    children: [
-      {
-        path: "contacts/:contactId",
-        element: <Contact />,
-        loader: contactLoader,
-      },
-      {
-        path: "contacts/:contactId/edit",
-        element: <EditContact />,
-        loader: contactLoader,
-      },
-    ],
-  },
-]);
-```
-
-## Updating Contacts with FormData
+## Updating Contacts with FormData (redirect)
 
 The edit route we just created already renders a form. All we need to do to update the record is wire up an action to the route. The form will post to the action and the data will be automatically revalidated.
 
@@ -387,6 +289,7 @@ export async function action({ request, params }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
   await updateContact(params.contactId, updates);
+  // It will redirect page to the url
   return redirect(`/contacts/${params.contactId}`);
 }
 
@@ -417,54 +320,20 @@ const router = createBrowserRouter([
 ]);
 ```
 
-## Active Link Styling
+## Active Link Styling (NavLink)
+
+When Link is active classname callback function gets arguments isActive, isPending
 
 ```jsx
-import {
-  Outlet,
-  NavLink,
-  useLoaderData,
-  Form,
-  redirect,
-} from "react-router-dom";
-
-export default function Root() {
-  return (
-    <>
-      <div id="sidebar">
-        {/* other code */}
-
-        <nav>
-          {contacts.length ? (
-            <ul>
-              {contacts.map((contact) => (
-                <li key={contact.id}>
-                  <NavLink
-                    to={`contacts/${contact.id}`}
-                    className={({ isActive, isPending }) =>
-                      isActive ? "active" : isPending ? "pending" : ""
-                    }
-                  >
-                    {/* other code */}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>{/* other code */}</p>
-          )}
-        </nav>
-      </div>
-    </>
-  );
-}
+<NavLink to={"/"} className={({ isActive }) => (isActive ? "active" : "")}>
+  Home
+</NavLink>
 ```
 
-## Global Pending UI
-
-React Router is managing all of the state behind the scenes and reveals the pieces of it you need to build dynamic web apps. In this case, we'll use the `useNavigation` hook.
+## Global Pending UI (useNavigation)
 
 useNavigation returns the current navigation state: it can be one of "idle" | "submitting" | "loading".
+We can apply css or do some action according to the state of navigation
 
 ```jsx
 import { useNavigation } from "react-router-dom";
@@ -489,6 +358,31 @@ export default function Root() {
 ## Deleting Records
 
 ```jsx
+// Destroy Action
+import { redirect } from "react-router-dom";
+import { deleteContact } from "../contacts";
+
+export async function destroyAction({ params }) {
+  await deleteContact(params.contactId);
+  return redirect("/");
+}
+
+// Action event when hit particular path
+import { destroyAction } from "./routes/destroy";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    children: [
+      {
+        path: "contacts/:contactId/destroy",
+        action: destroyAction,
+      },
+    ],
+  },
+]);
+
+// Source of Event from component
 <Form
   method="post"
   action="destroy"
@@ -502,28 +396,8 @@ export default function Root() {
 </Form>;
 
 // destroy.jsx
-import { redirect } from "react-router-dom";
-import { deleteContact } from "../contacts";
-
-export async function action({ params }) {
-  await deleteContact(params.contactId);
-  return redirect("/");
-}
 
 // main.jsx
-import { action as destroyAction } from "./routes/destroy";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    children: [
-      {
-        path: "contacts/:contactId/destroy",
-        action: destroyAction,
-      },
-    ],
-  },
-]);
 ```
 
 ## useNavigate
@@ -552,4 +426,214 @@ export default function EditContact() {
     </Form>
   );
 }
+```
+
+## Index Routes
+
+If you want to render a page at index set it's `index:true`
+whichever component you want to render set `index:true`
+
+```jsx
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <Error />,
+    children: [
+      { index: true, element: <Index /> },
+      {
+        path: "products",
+        children: [
+          {
+            path: "",
+            loader: productLoader,
+            element: <ProductsList />,
+          },
+          {
+            path: ":productId",
+            element: <Product />,
+            loader: PL,
+          },
+        ],
+      },
+    ],
+  },
+]);
+```
+
+## useNavigate
+
+To navigate backward and forward in url
+
+```js
+import { useNavigate } from "react-router-dom";
+
+const Navbar = () => {
+  const navigate = useNavigate();
+  return (
+    <nav>
+      <button onClick={() => navigate(-1)}>Back</button>
+      <button onClick={() => navigate(1)}>Forward</button>
+    </nav>
+  );
+};
+
+export default Navbar;
+```
+
+## Synchronizing URL to form state
+
+```js
+import { Form, useLoaderData, useNavigation } from "react-router-dom";
+import getProducts from "./utils/getProducts";
+
+export async function indexLoader({ request }) {
+  const url = new URL(request.url);
+  const q = url.searchParams.get("q");
+  const products = await getProducts("https://dummyjson.com/products");
+  return { products, q };
+}
+
+const productList = (param, { products }) => {
+  if (param) {
+    const filteredProducts = products.filter((product) =>
+      product.title.toLowerCase().includes(param.toLowerCase())
+    );
+    return filteredProducts;
+  }
+  return products;
+};
+
+const Index = () => {
+  const { products, q } = useLoaderData();
+
+  const navigation = useNavigation();
+
+  let searchProducts;
+  if (products) {
+    searchProducts = productList(q, products);
+  }
+
+  return (
+    <>
+      <Form>
+        <input type="text" name="q" placeholder="Search" defaultValue={q} />
+      </Form>
+      <h2>This is home page | Index Page</h2>
+      <div
+        className={`products ${navigation.state == "loading" ? "loading" : ""}`}
+      >
+        {searchProducts
+          ? searchProducts.map((product) => (
+              <ul className="product" key={product.id}>
+                <img src={product.thumbnail} alt="" />
+                <h2>{product.title}</h2>
+                <p>{product.description}</p>
+              </ul>
+            ))
+          : "No items to show"}
+      </div>
+    </>
+  );
+};
+
+export default Index;
+```
+
+## useSubmit
+
+Submiting form on every change
+
+```js
+import { Form, useSubmit } from "react-router-dom";
+
+const Index = () => {
+  const submit = useSubmit();
+
+  return (
+    <>
+      <Form>
+        <input
+          type="text"
+          name="q"
+          placeholder="Search"
+          defaultValue={q}
+          onChange={(event) => {
+            submit(event.currentTarget.form);
+          }}
+        />
+      </Form>
+    </>
+  );
+};
+
+export default Index;
+```
+
+## Replacing the search stack
+
+If the value of q is null it means it's a first seacrch so don't replace the total history stack if not then replace the stack
+
+```js
+import {
+  Form,
+  useLoaderData,
+  useSubmit,
+} from "react-router-dom";
+
+
+const Index = () => {
+  const { products, q } = useLoaderData();
+  const submit = useSubmit();
+
+  return (
+    <>
+      <Form>
+        <input
+          type="text"
+          name="q"
+          placeholder="Search"
+          defaultValue={q}
+          onChange={(event) => {
+            const isFirstSearch = q == null;
+            submit(event.currentTarget.form, {
+              replace: !isFirstSearch,
+            });
+          }}
+        />
+      </Form>
+
+  );
+};
+
+export default Index;
+```
+
+## Lazy Loading
+
+```js
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+const lazyAbout = React.lazy(() => import("./about"));
+
+const router = createBrowserRouter({
+  children: [
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/about",
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <lazyAbout />
+        </Suspense>
+      ),
+    },
+  ],
+});
+
+ReactDOM.render(
+  <RouterProvider router={router} />,
+  document.getElementById("root")
+);
 ```
