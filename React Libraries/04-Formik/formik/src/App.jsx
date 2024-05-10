@@ -1,6 +1,11 @@
-import SignupForm from "./form";
+import Enrollment from "./Course-Enrollment/Enrollment";
+
 function App() {
-  return <SignupForm />;
+  return (
+    <>
+      <Enrollment />
+    </>
+  );
 }
 
 export default App;

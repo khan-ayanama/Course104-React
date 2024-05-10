@@ -477,7 +477,7 @@ const SignupForm = () => {
 
         <label htmlFor="lastName">Last Name</label>
         <Field name="lastName" type="text" />
-        <ErrorMessage name="lastName" />
+        <ErrorMessage name="lastName" component="div" />
 
         <label htmlFor="email">Email Address</label>
         <Field name="email" type="email" />
@@ -506,3 +506,5 @@ const SignupForm = () => {
   <option value="blue">Blue</option>
 </Field>
 ```
+
+Note: You can pass component attribute to error message to render inside div.
