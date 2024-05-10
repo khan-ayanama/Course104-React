@@ -70,13 +70,13 @@ const Index = () => {
           : "No items to show"}
       </div>
       <fetcher.Form method="post">
-        <button
+        {/* <button
           name="favorite"
           value={favorite ? "false" : "true"}
           aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
         >
           {favorite ? "★" : "☆"}
-        </button>
+        </button> */}
       </fetcher.Form>
     </>
   );
