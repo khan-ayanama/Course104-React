@@ -16,7 +16,7 @@ store.dispatch(countIncrease("increase"));
 
 ## Memoized Selectors
 
-Memoized selectrs are the function which caches the same output so component doesn't re-render if value doesn't changes.
+Memoized selectors are the function which caches the same output so component doesn't re-render if value doesn't changes.
 
 To be continued...
 

@@ -1,13 +1,13 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import ReactDom from "react-dom/client";
 import "./index.css";
-import { StoreProvider } from "./store/store.jsx";
+import { App } from "./App";
+import { StoreProvider } from "./store";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+ReactDom.createRoot(document.getElementById("root")).render(
+  <React.Fragment>
     <StoreProvider>
       <App />
     </StoreProvider>
-  </React.StrictMode>
+  </React.Fragment>
 );

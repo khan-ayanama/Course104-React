@@ -54,7 +54,7 @@ import rootReducer from "./reducers/reducer.js";
 
 const returnHello = (storeAPI) => (next) => (action) => {
   setInterval(() => {
-    console.log("insie middlewar");
+    console.log("insie middleware");
   }, 1000);
 
   return next(action);
@@ -101,7 +101,7 @@ const anotherExampleMiddleware = (storeAPI) => (next) => (action) => {
 
 `exampleMiddleware:` The outer function is actually the "middleware" itself. It will be called by applyMiddleware, and receives a storeAPI object containing the store's {dispatch, getState} functions. These are the same dispatch and getState functions that are actually part of the store. If you call this dispatch function, it will send the action to the start of the middleware pipeline. This is only called once.
 `wrapDispatch:` The middle function receives a function called next as its argument. This function is actually the next middleware in the pipeline. If this middleware is the last one in the sequence, then next is actually the original store.dispatch function instead. Calling next(action) passes the action to the next middleware in the pipeline. This is also only called once
-`handleAction: `Finally, the inner function receives the current action as its argument, and will be called every time an action is dispatched.
+`handleAction:` Finally, the inner function receives the current action as its argument, and will be called every time an action is dispatched.
 
 ## Adding redux devtools
 

@@ -57,7 +57,7 @@ export default counterSlice.reducer;
 
 `Configuring Store`
 
-for now it takes one ooption which is reducer: an object which contains all the reducer of application.
+For now it takes one option which is reducer: an object which contains all the reducer of application.
 `Provider` It provides store to application
 
 ```jsx

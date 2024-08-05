@@ -1,13 +1,10 @@
-import React from "react";
-import ProductList from "./products/ProductList";
+import Counter from "./counter/Counter";
 
-const App = () => {
+export function App() {
   return (
     <>
       <h2>Application</h2>
-      <ProductList />
+      <Counter />
     </>
   );
-};
-
-export default App;
+}

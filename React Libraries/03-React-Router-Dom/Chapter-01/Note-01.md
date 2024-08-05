@@ -461,7 +461,7 @@ const router = createBrowserRouter([
 ]);
 ```
 
-## useNavigate
+## useNavigate hook
 
 To navigate backward and forward in url
 
@@ -572,7 +572,7 @@ export default Index;
 
 ## Replacing the search stack
 
-If the value of q is null it means it's a first seacrch so don't replace the total history stack if not then replace the stack
+If the value of q is null it means it's a first search so don't replace the total history stack if not then replace the stack
 
 ```js
 import {

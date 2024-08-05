@@ -1,12 +1,15 @@
-import logo from "./logo.svg";
-import "./App.css";
-
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <p>First React Test</p>
-    </div>
+    <>
+      <h2>Application</h2>
+      <p>This is application page</p>
+      <input
+        type="text"
+        placeholder="Enter User Name"
+        name="username"
+        id="userId"
+        value="ayan khan"
+      />
+    </>
   );
 }
-
-export default App;

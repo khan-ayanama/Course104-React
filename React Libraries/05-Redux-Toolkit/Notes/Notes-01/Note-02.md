@@ -2,7 +2,7 @@
 
 ## Immutibility
 
-In redux we assume the object of state is immutible which means we cna't directly change it's value it is useful in recording history of a state.
+In redux we assume the object of state is immutible which means we can't directly change it's value it is useful in recording history of a state.
 
 ## Actions
 

@@ -25,7 +25,7 @@ A store is a JS object with a few special function and abilities.
 You should never modify store directly.
 When you want to update you need to `dispatch` an `action` which runs a `reducer` function which will eventually update the global state you can notified by `subscribers` that the state has been updated.
 
-### Installation of redux.
+### Installation of redux
 
 ```bash
 npm install redux

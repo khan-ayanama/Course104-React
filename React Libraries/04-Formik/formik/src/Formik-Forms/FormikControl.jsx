@@ -1,4 +1,3 @@
-import React from "react";
 import Input from "./Input";
 import TextArea from "./TextArea";
 import Select from "./Select";
@@ -24,7 +23,6 @@ const FormikControl = (props) => {
     default:
       return null;
   }
-  return <div>FormikControl</div>;
 };
 
 export default FormikControl;

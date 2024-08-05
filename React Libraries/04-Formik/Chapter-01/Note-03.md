@@ -1,6 +1,6 @@
 # Reusable Formik Components
 
-1. Create FormikContainer
+- Create FormikContainer
 
 ```jsx
 import { Form, Formik } from "formik";
@@ -40,7 +40,7 @@ function FormikContainer() {
 export default FormikContainer;
 ```
 
-2. Create Formik Control
+- Create Formik Control
 
 ```jsx
 import React from "react";
@@ -64,7 +64,7 @@ const FormikControl = (props) => {
 export default FormikControl;
 ```
 
-3. Create Form Element
+- Create Form Element
 
 ```jsx
 import { ErrorMessage, Field } from "formik";

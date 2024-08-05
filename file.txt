@@ -1,13 +1,18 @@
-Project-01 + Redux --> 01 May - 10 May
-Project-02 + React Query --> 11 May - 17 May
-Project-03 + 
-Project-04 + Firebase --> 23 Apr - 30 Apr
-Project-05 + 
-Project-06 + 
-Project-07 + Formik --> 08 Mar - 15 Mar
-Project-08 + RxJS --> 16 Mar - 23 Mar
-Project-09 + React-Testing-Library --> 24 Mar - 31 Mar
-Project-10 + Three.js --> 01 Apr - 08 Apr
-Babel --> 01 Apr - 05 Apr
-Webpack --> 06 Apr - 10 Apr
-React-Router-Dom --> 11 Apr - 22 Apr
+Project-01 + Babel & Webpack --> 28 Jun - 02 Jul
+Project-02 + React-Router-Dom --> 03 Jul - 05 Jul
+Project-03 + Formik --> 06 Jul - 08 Jul
+Project-04 + Redux --> 09 Jul - 15 Jul
+Project-05 + Tanstack Query --> 16 Jul - 20 Jul
+Project-06 + Tanstack Table --> 21 Jul - 25 Jul
+Project-07 + Firebase --> 26 Jul - 28 Jul
+Project-08 + Appwrite --> 29 Jul - 31 Jul
+Project-10 + Three.js --> 01 Aug - 08 Aug
+Aug -> Complete React
+Sept --> Complete Nextjs and Design
+
+Completed:
+
+01 - Babel
+02 - Webpack
+03 - React-Router-Dom
+04 - Formik
