@@ -1,24 +1,9 @@
-import { render, screen } from "@testing-library/react";
 import App from "./App";
+import { fireEvent, render, screen } from "@testing-library/react";
 
-// test("renders learn react link", () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/this is application page/i);
-//   expect(linkElement).toBeInTheDocument();
-
-//   const imageTitle = screen.getByTitle("Image Title");
-//   expect(imageTitle).toBeInTheDocument();
-// });
-
-test("Testing Input box", () => {
+test("click event test case", () => {
   render(<App />);
-  let checkInput = screen.getByRole("textbox");
-  expect(checkInput).toBeInTheDocument();
-  let checkInputPlaceholder = screen.getByPlaceholderText("Enter User Name");
-  expect(checkInputPlaceholder).toBeInTheDocument();
-
-  expect(checkInput).toHaveAttribute("name", "username");
-  expect(checkInput).toHaveAttribute("id", "userId");
-  expect(checkInput).toHaveAttribute("type", "text");
-  expect(checkInput).toHaveAttribute("value", "ayan khan");
+  const btn = screen.getByRole("button");
+  fireEvent.click(btn);
+  expect(screen.getByText("update text")).toBeInTheDocument();
 });

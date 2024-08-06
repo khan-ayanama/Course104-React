@@ -1,15 +1,11 @@
+import { useState } from "react";
+
 export default function App() {
+  const [text, setText] = useState("original text");
   return (
     <>
-      <h2>Application</h2>
-      <p>This is application page</p>
-      <input
-        type="text"
-        placeholder="Enter User Name"
-        name="username"
-        id="userId"
-        value="ayan khan"
-      />
+      <h2>{text}</h2>
+      <button onClick={() => setText("update text")}>Update</button>
     </>
   );
 }
