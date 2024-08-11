@@ -234,15 +234,15 @@ const users = [
 ];
 
 // Normalized state
-const users:{
-  ids:[1,2,3,4,5],
-  entities:[
-    {id:1,name:'John',email:'john@gmail.com'},
-    {id:2,name:'Jane',email:'jane@gmail.com'},
-    {id:3,name:'Morgan',email:'morgan@gmail.com'},
-    {id:4,name:'Jim',email:'jimmy@gmail.com'},
-  ]
-}
+const users = {
+  ids: [1, 2, 3, 4],
+  entities: {
+    1: { id: 1, name: "John", email: "john@gmail.com" },
+    2: { id: 2, name: "Jane", email: "jane@gmail.com" },
+    3: { id: 3, name: "Morgan", email: "morgan@gmail.com" },
+    4: { id: 4, name: "Jim", email: "jimmy@gmail.com" },
+  },
+};
 ```
 
 ## createEntitySelector

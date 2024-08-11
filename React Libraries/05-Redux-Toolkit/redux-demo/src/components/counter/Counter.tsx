@@ -42,8 +42,8 @@ const Counter: React.FC = () => {
       <div>
         <button
           className="my-4 w-[320px] rounded-md bg-blue-700 px-10 py-1 text-lg font-bold text-white"
-          // onClick={() => dispatch(decrementByAmount(5))}
-          onMouseDown={() => dispatch(decrementByAmount(5))}
+          onClick={() => dispatch(decrementByAmount(5))}
+          // onMouseDown={() => dispatch(decrementByAmount(5))}
         >
           Decrement by 5
         </button>
