@@ -45,5 +45,3 @@
 `Index Route` - A child route with no path that renders in the parent's outlet at the parent's URL.
 
 `Layout Route` - A parent route without a path, used exclusively for grouping child routes inside a specific layout.
-
-## History and Location

@@ -1,7 +1,6 @@
 import { ErrorMessage, Field } from "formik";
 
 const TextArea = ({ label, name, ...rest }) => {
-  console.log("HER", rest);
   return (
     <div>
       <label htmlFor={name}>{label}</label>
